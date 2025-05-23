@@ -94,11 +94,6 @@
          <version>3.0.4</version>
          <scope>test</scope>
       </dependency>
-      <dependency>
-      	<groupId>com.example</groupId>
-      	<artifactId>ajax</artifactId>
-      	<version>0.0.1-SNAPSHOT</version>
-      </dependency>
    </dependencies>
 
    <build>
