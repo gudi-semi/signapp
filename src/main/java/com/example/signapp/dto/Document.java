@@ -7,7 +7,7 @@ public class Document {
     private int documentNo;
     private String documentTitle;
     private String documentContent;
-    private int employeeId;
+    private String employeeId;
     private String employeeName;
     private String documnetStatus;
 }

@@ -23,8 +23,8 @@
     <h2 class="mb-4">로그인</h2>
     <form action="login" method="post">
         <div class="mb-3">
-            <label for="employeeName" class="form-label">이름</label>
-            <input type="text" class="form-control" id="employeeName" name="employeeName" required>
+            <label for="employeeId" class="form-label">ID</label>
+            <input type="text" class="form-control" id="employeeId" name="employeeId" required>
         </div>
         <div class="mb-3">
             <label for="employeePw" class="form-label">비밀번호</label>

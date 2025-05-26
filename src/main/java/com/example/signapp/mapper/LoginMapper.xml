@@ -10,18 +10,20 @@
 		SELECT employee_id AS employeeId, employee_name AS employeeName , employee_level AS employeeLevel
 		FROM employee
 		WHERE
-		employee_name = #{employeeName}
+		employee_id = #{employeeId}
 		AND employee_pw = #{employeePw}
 	</select>
 	<!-- 회원가입 -->
 		<insert id="joinEmployee" parameterType="com.example.signapp.dto.Employee">
     INSERT INTO employee (
         employee_name,
+        employee_id,
         employee_level,
         employee_pw
     )
     VALUES (
         #{employeeName},
+        #{employeeId},
         #{employeeLevel},
         #{employeePw}
     )
