@@ -6,6 +6,7 @@
     <title>문서 목록</title>
 </head>
 <body>
+	<!-- 모든 서류들 리스트 -->
     <h2>문서 목록</h2>
     <table border="1">
         <tr>
