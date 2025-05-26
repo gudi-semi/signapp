@@ -6,7 +6,6 @@
     <title>문서 목록</title>
 </head>
 <body>
-	<!-- 모든 서류들 리스트 -->
     <h2>문서 목록</h2>
     <table border="1">
         <tr>
@@ -18,7 +17,11 @@
         <c:forEach var="doc" items="${documentList}">
             <tr>
                 <td>${doc.documentNo}</td>
-                <td>${doc.documentTitle}</td>
+                <td>
+	                <a href="docView?documentNo=${doc.documentNo}">
+	                	${doc.documentTitle}
+                	</a>
+                </td>
                 <td>${doc.employeeName}</td>
                 
             </tr>
