@@ -3,10 +3,9 @@
 <mapper namespace="com.example.signapp.mapper.SignMapper">
 <insert id="insertSign" parameterType="com.example.signapp.dto.SignForm">
     INSERT INTO sign (sign_id, document_no, approver_id, sign_status_lv1, 
-    sign_status_lv2, sign_time, file_name)
-    VALUES (#{signId}, #{documentNo}, #{approverId}, #{signStatusLv1},
-    #{sign #{fileName}
-    )
+    sign_status_lv2,  file_name , {signTime})
+    VALUES (#{signId}, #{documentNo}, #{loginId}, #{signStatusLv1},
+    #{signStatusLv2}, #{fileName}, now());
 </insert>
 
 </mapper>

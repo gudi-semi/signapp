@@ -3,22 +3,26 @@ package com.example.signapp.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.signapp.dto.Document;
 import com.example.signapp.dto.Employee;
+import com.example.signapp.dto.SignForm;
 import com.example.signapp.service.DocumentService;
+import com.example.signapp.service.SignService;
 
 import jakarta.servlet.http.HttpSession;
 @Controller
 public class SignController {
 	
 	@Autowired DocumentService documentService;
-
+	@Autowired SignService signService;
 	// 레벨1사인로 수정
 	@GetMapping("/signLevel1")
 	public String signLevel1() {
@@ -88,5 +92,14 @@ public class SignController {
     public String level2List(HttpSession session) {
     	
     	return "level2/level2List";
+    }
+    @PostMapping("/confrimSign")
+    public ResponseEntity<String> confirmSign(@RequestBody SignForm signForm) {
+        boolean result = signService.addSign(signForm);
+        if (result) {
+            return ResponseEntity.ok("사인 저장 성공");
+        } else {
+            return ResponseEntity.status(500).body("사인 저장 실패");
+        }
     }
 }
