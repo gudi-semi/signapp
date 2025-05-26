@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.signapp.mapper.SignMapper">
+<insert id="insertSign" parameterType="com.example.signapp.dto.SignForm">
+    INSERT INTO sign (sign_id, document_no, approver_id, sign_status_lv1, 
+    sign_status_lv2, sign_time, file_name)
+    VALUES (#{signId}, #{documentNo}, #{approverId}, #{signStatusLv1},
+    #{sign #{fileName}
+    )
+</insert>
+
+</mapper>

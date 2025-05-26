@@ -34,8 +34,8 @@
 					, url : '/addSign'
 					, type : 'post'
 					, data : {
-						id: $('#id').text()
-						, signImg: signaturePad.toDataURL() // signaturePad.toDataURL("image/jpeg"); 인수 생략시 기본값은 png 이미지
+						signid: $('#id').text()
+						, fileName: signaturePad.toDataURL() // signaturePad.toDataURL("image/jpeg"); 인수 생략시 기본값은 png 이미지
 					} // 로그인 사용자 id와 signaturePad객체안의 사인 이미지
 				}).done(function(data){
 					alert(data); // data = 결제완료

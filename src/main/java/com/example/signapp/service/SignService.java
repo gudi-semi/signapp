@@ -6,24 +6,30 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.signapp.dto.SignForm;
+import com.example.signapp.mapper.SignMapper;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Transactional
 @Service
 public class SignService {
-
+	@Autowired
+	private SignMapper signMapper;
+	
 	public boolean addSign(SignForm signForm) {
+		
+		    
 		// 0) signImg 파일이름을 생성
 		String ext = ".png"; // data:image/png;Base64,xxxxxx....
 		String filename = UUID.randomUUID().toString().replace("-", "")+ext;
 		
 		// 1) mapper 호출
-		
+		signMapper.insertSign(signForm);
 		// 2) 이미지를 디코딩해서 원하는 위치에 저장
 		FileOutputStream fos = null;
 		try {
