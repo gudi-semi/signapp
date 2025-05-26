@@ -35,7 +35,8 @@ public class LoginController {
   
         session.setAttribute("loginEmployee", loginEmployee);
         session.setAttribute("loginName", loginEmployee.getEmployeeName()); 
-
+        session.setAttribute("employeeLevel", loginEmployee.getEmployeeLevel());
+        
         return "redirect:/login";  
     }
 

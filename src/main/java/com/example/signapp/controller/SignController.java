@@ -61,4 +61,17 @@ public class SignController {
         model.addAttribute("documentList", documentList);
         return "docList";
     }
+    // filter - level1
+    @GetMapping("/level1/level1List")
+    public String level1List() {
+    	
+    	return "level1List";
+    }
+    
+    // filter - level2
+    @GetMapping("/level2/level2List")
+    public String level2List(HttpSession session) {
+    	
+    	return "level2/level2List";
+    }
 }

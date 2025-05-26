@@ -16,8 +16,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
-@WebFilter("/employee/*")
-public class EmployeeFilter implements Filter{
+@WebFilter("/level1/*")
+public class Level1Filter implements Filter{
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -27,13 +27,22 @@ public class EmployeeFilter implements Filter{
 		if(request instanceof HttpServletRequest) {
 			HttpServletRequest httpReq = (HttpServletRequest)request;
 			HttpSession session = httpReq.getSession();
-			Employee loginMember = (Employee)session.getAttribute("loginMember");
-			if(loginMember == null) {
+			Employee loginEmployee = (Employee)session.getAttribute("loginEmployee");
+			if(loginEmployee == null) {
 				if(response instanceof HttpServletResponse) {
 					log.info("OnSessionFilter에 걸려서 sendRedirect /login 됨");
 					((HttpServletResponse) response).sendRedirect("/login");
 				}
 				return;
+			}
+			String employeeLevel = loginEmployee.getEmployeeLevel();
+			log.info("employeeLevel in session: ", session.getAttribute("employeeLevel"));
+			if(!"level1".equals(employeeLevel)) {
+				if(response instanceof HttpServletResponse) {
+					log.info("OnSessionFilter에 걸려서 sendRedirect /docList 됨");
+					((HttpServletResponse) response).sendRedirect("/docList");
+					return;
+				}
 			}
 		}
 		
@@ -42,3 +51,5 @@ public class EmployeeFilter implements Filter{
 	}
 
 }
+
+
