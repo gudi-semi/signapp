@@ -19,17 +19,32 @@ public class SignController {
 	
 	@Autowired DocumentService documentService;
 
-	@GetMapping("/signLevel3")
-	public String signLevel3() {
-		return "signLevel3";
+	// 레벨1사인로 수정
+	@GetMapping("/signLevel1")
+	public String signLevel1() {
+		return "signLevel1";
+	}
+	
+	// 레벨2사인 추가
+	@GetMapping("/signLevel2")
+	public String signLevel2() {
+		return "signLevel2";
 	}
 	
 
-	@GetMapping("/docView")
-	public String docView() {
-	
-		return "docView";
-	}
+	   // 상세보기
+    @GetMapping("/docView")
+    public String docView(int documentNo, Model model) {
+    	// 1) 문서 번호로 문서 조회
+    	Document document = documentService.getDocumentByNo(documentNo);
+    	
+    	// 2) 조회한 문서를 모델에 담아서 JSP로 넘김
+    	model.addAttribute("document", document);
+    	
+    	// 3) docOne 페이지로 이동
+    	return "docView";
+    	
+    }
 
     @GetMapping("/docWrite")
     public String showWriteForm(Model model, Document document) {

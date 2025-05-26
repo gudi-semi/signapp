@@ -14,4 +14,16 @@
       LEFT JOIN employee e ON d.employee_id = e.employee_id
 </select>
 
+<!-- 문서번호를 이용해서 문서 1개를 조회하는 상세보기  -->
+<select id="selectDocumentByNo" parameterType="int" resultType="com.example.signapp.dto.Document">
+	SELECT
+		d.document_no AS documentNo,
+		d.document_title AS documentTitle,
+		d.document_content AS documentContent,
+		e.employee_name AS employeeName
+	FROM document d
+	JOIN employee e ON d.employee_id = e.employee_id
+	WHERE d.document_no = #{documentNo}
+</select>
+
 </mapper> 

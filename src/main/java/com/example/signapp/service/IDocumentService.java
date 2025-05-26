@@ -23,4 +23,10 @@ public class IDocumentService implements DocumentService {
     public void writeDocument(Document document) {
         documentMapper.writeDocument(document);
     }
+
+    // 문서 번호로 문서 하나 조회
+	@Override
+	public Document getDocumentByNo(int documentNo) {
+		return documentMapper.selectDocumentByNo(documentNo);
+	}
 }
