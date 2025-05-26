@@ -9,4 +9,5 @@ public class Document {
     private String documentContent;
     private int employeeId;
     private String employeeName;
+    private String documnetStatus;
 }

@@ -29,7 +29,7 @@ public class SignService {
 		try {
 			fos = new FileOutputStream("c:\\sign_img\\"+filename); // throws FileNotFoundException
 			// 파일을 만들 수 있는 비어있는 OutputStream에 signImg안에 이미지문자(signImg ,뒤부터)를 디코딩
-			String signImg1 = signForm.getSignImg().split(",")[1];
+			String signImg1 = signForm.getFileName().split(",")[1];
 			fos.write(Base64.getDecoder().decode(signImg1)); // throws IOException
 		} catch (FileNotFoundException e1) {
 			log.error("파일생성 실패 @Transactional 록백");
