@@ -95,5 +95,28 @@ public class SignController {
     	
     	return "level2/level2List";
     }
+    
+    
+    // 문서 수정
+    @GetMapping("/updateDocView")
+    public String updateDocument(Model model, @RequestParam("documentNo") int documentNo) {
+    	Document doc = documentService.getDocumentByNo(documentNo);
+    	model.addAttribute("document", doc);
+    	return "updateDocView";
+    }
+   
+    @PostMapping("/updateDocView")
+    public String updateDocument(Document document) {
+    	documentService.updateDocument(document);
+    	return "redirect:/docList";
+    }
+    
+    
+    // 문서 삭제
+    @PostMapping("/deleteDocView")
+    public String deleteDocument(Model model, Document document) {
+    	documentService.deleteDocument(document);
+    	return "redirect:/docList";
+    }
   
 }

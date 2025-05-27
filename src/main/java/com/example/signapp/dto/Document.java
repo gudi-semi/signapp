@@ -10,4 +10,6 @@ public class Document {
     private String employeeId;
     private String employeeName;
     private String documnetStatus;
+    private String signStatusLv1;
+    private String signStatusLv2;
 }

@@ -12,4 +12,10 @@ public interface DocumentMapper {
 	
 	// 문서상세보기(문서번호를 받아 문서 한개 반환)
 	Document selectDocumentByNo(int documentNo);
+	
+	// 문서 수정
+	int updateDocument(Document document);
+	
+	// 문서 삭제
+	int deleteDocument(Document document);
 }

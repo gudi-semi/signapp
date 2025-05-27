@@ -29,4 +29,16 @@ public class IDocumentService implements DocumentService {
 	public Document getDocumentByNo(int documentNo) {
 		return documentMapper.selectDocumentByNo(documentNo);
 	}
+	
+	// 문서 수정
+	@Override
+	public int updateDocument(Document document) {
+		return documentMapper.updateDocument(document);
+	}
+
+	// 문서 삭제
+	@Override
+	public int deleteDocument(Document document) {
+		return documentMapper.deleteDocument(document);
+	}
 }

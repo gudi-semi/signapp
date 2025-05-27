@@ -20,10 +20,29 @@
 		d.document_no AS documentNo,
 		d.document_title AS documentTitle,
 		d.document_content AS documentContent,
-		e.employee_name AS employeeName
+		e.employee_name AS employeeName,
+		s.sign_status_lv1 AS signStatusLv1,
+		s.sign_status_lv2 AS signStatusLv2
 	FROM document d
 	JOIN employee e ON d.employee_id = e.employee_id
+	LEFT JOIN sign s ON d.document_no = s.document_no
 	WHERE d.document_no = #{documentNo}
 </select>
+
+<!-- 문서 수정 -->
+<update id="updateDocument" parameterType="com.example.signapp.dto.Document">
+	UPDATE document
+	<set>
+		<if test="documentTitle != null">document_title = #{documentTitle},</if>
+		<if test="documentContent != null">document_content = #{documentContent}</if>
+	</set>
+	WHERE document_no = #{documentNo}
+</update>
+
+<!-- 문서 삭제 -->
+<delete id="deleteDocument" parameterType="com.example.signapp.dto.Document">
+	DELETE FROM document
+	WHERE document_no = #{documentNo}
+</delete>
 
 </mapper> 
