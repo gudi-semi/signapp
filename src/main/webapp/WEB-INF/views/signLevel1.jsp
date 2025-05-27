@@ -32,11 +32,15 @@
         $('#btnClear').click(function () {
             signaturePad.clear();
         });
-
+        
+        // 확인 버튼()
         $('#btnSign').click(function () {
-            if (signaturePad.isEmpty()) {
-                alert('사인을 먼저 해 주세요');
-            } else {
+            const status = $('#signStatusLv1').val();
+        // 승인일 때만 사인 여부 검사, 거절,보류 선택시 경고창 안뜨게
+	    if (status === '승인' && signaturePad.isEmpty()) {
+	        alert('사인을 먼저 해 주세요');
+	        return;
+	    }
             	$.ajax({
             	    async: true,
             	    url: '/signLevel1',
@@ -52,12 +56,12 @@
             	}).done(function (data) {
             	    alert(data);
             	    signaturePad.clear();
-            	    location.href = '/docList';
+            	    // 거절,보류 선택 후 확인 누르면 no값같이 넘기기위해
+            	    location.href = '/docView?documentNo=' + $('#documentNo').val();
             	}).fail(function () {
             	    alert('결재 실패');
             	});
 
-            }
         });
     });
 </script>

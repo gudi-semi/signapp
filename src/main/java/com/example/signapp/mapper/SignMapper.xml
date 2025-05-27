@@ -49,6 +49,8 @@
     ORDER BY sign_id DESC
     LIMIT 1
 </select>
+
+<!-- 서명란 수정필요없을 시 삭제? -->
 <!-- sign 중복 제거(최신것만 남기고 삭제) -->
 <delete id="deleteOldSignsExceptLatest" parameterType="int">
     DELETE FROM sign

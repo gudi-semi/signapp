@@ -24,12 +24,9 @@ public class SignController {
 	@Autowired SignService signService;
 	// 레벨1사인로 수정
 	@GetMapping("/signLevel1")
-	public String signLevel1(@RequestParam int documentNo
+	public String signLevel1(@RequestParam Integer documentNo
 							, Model model) {
-	    Document document = documentService.getDocumentByNo(documentNo);
-	    SignForm sign = signService.getSignByDocumentNo(documentNo); // 서명 불러오기
 		model.addAttribute("documentNo", documentNo);
-		model.addAttribute("sign", sign); // JSP에서 ${sign.xxx}로 사용 가능
 		return "signLevel1";
 	}
 	
