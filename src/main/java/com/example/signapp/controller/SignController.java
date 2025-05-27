@@ -23,7 +23,9 @@ public class SignController {
 	@Autowired SignService signService;
 	// 레벨1사인로 수정
 	@GetMapping("/signLevel1")
-	public String signLevel1() {
+	public String signLevel1(@RequestParam int documentNo
+							, Model model) {
+		model.addAttribute("documentNo", documentNo);
 		return "signLevel1";
 	}
 	

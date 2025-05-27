@@ -6,7 +6,7 @@
 		INSERT INTO 
 		sign (sign_id, document_no, last_approver_id, last_approver_name, sign_status_lv2,file_name_lv2,last_sign_time)
 		VALUES (#{signId}, #{documentNo}, #{approverId}, #{approverName},#{signStatusLv2},
-	 #{fileNameLv2}, now());
+	 #{fileNameLv2}, NOW() + INTERVAL 9 HOUR);
 
 	</insert>
 	<update id="addSignLevel1"
@@ -15,8 +15,9 @@
 		SET 
 		sign_status_lv1 = #{signStatusLv1},
 		file_name_lv1 = #{fileNameLv1},
+		last_approver_id = #{approverId},
 		last_approver_name = #{approverName},
-		last_sign_time = now()
+		last_sign_time = NOW() + INTERVAL 9 HOUR
 		WHERE document_no = #{documentNo}
 	</update>
 
