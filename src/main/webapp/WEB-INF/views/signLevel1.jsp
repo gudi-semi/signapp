@@ -22,7 +22,7 @@
 
         // select 값이 변경될 때 canvas 보이기/숨기기
         $('#signStatusLv1').change(function () {
-            if ($(this).val() === '승인') {
+            if ($(this).val() === '승인' ) {
                 $('canvas').show();
             } else {
                 $('canvas').hide();
@@ -37,7 +37,7 @@
         $('#btnSign').click(function () {
             const status = $('#signStatusLv1').val();
         // 승인일 때만 사인 여부 검사, 거절,보류 선택시 경고창 안뜨게
-	    if (status === '승인' && signaturePad.isEmpty()) {
+	    if (status === '승인' || status === '대기' && signaturePad.isEmpty()) {
 	        alert('사인을 먼저 해 주세요');
 	        return;
 	    }
