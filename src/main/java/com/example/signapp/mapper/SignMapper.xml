@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.signapp.mapper.SignMapper">
-<insert id="addSign" parameterType="com.example.signapp.dto.SignForm">
-    INSERT INTO sign (sign_id, document_no, last_approver_id, sign_status_lv1, 
-    sign_status_lv2,  file_name , {signTime})
-    VALUES (#{signId}, #{documentNo}, #{loginId}, #{signStatusLv1},
-    #{signStatusLv2}, #{fileName}, now());
-</insert>
+	<insert id="addSignLevel2"
+		parameterType="com.example.signapp.dto.SignForm">
+		INSERT INTO 
+		sign (sign_id, document_no,last_approver_name, sign_status_lv2,file_name_lv2,last_sign_time)
+		VALUES (#{signId}, #{documentNo}, #{approverName},#{signStatusLv2},
+	 #{fileNameLv2}, now());
+
+	</insert>
+	<update id="addSignLevel1"
+		parameterType="com.example.signapp.dto.SignForm">
+		UPDATE sign 
+		SET 
+		sign_status_lv1 = #{signStatusLv1},
+		file_name_lv1 = #{fileNameLv1},
+		last_approver_name = #{approverName},
+		last_sign_time = now()
+		WHERE document_no = #{documentNo}
+	</update>
 
 </mapper>
