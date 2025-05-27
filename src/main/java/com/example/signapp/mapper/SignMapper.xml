@@ -4,8 +4,8 @@
 	<insert id="addSignLevel2"
 		parameterType="com.example.signapp.dto.SignForm">
 		INSERT INTO 
-		sign (sign_id, document_no,last_approver_name, sign_status_lv2,file_name_lv2,last_sign_time)
-		VALUES (#{signId}, #{documentNo}, #{approverName},#{signStatusLv2},
+		sign (sign_id, document_no, last_approver_id, last_approver_name, sign_status_lv2,file_name_lv2,last_sign_time)
+		VALUES (#{signId}, #{documentNo}, #{approverId}, #{approverName},#{signStatusLv2},
 	 #{fileNameLv2}, now());
 
 	</insert>

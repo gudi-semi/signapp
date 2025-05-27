@@ -29,7 +29,8 @@ public class SignController {
 	
 	// 레벨2사인 추가
 	@GetMapping("/signLevel2")
-	public String signLevel2(@RequestParam int documentNo, Model model) {
+	public String signLevel2(@RequestParam int documentNo
+							, Model model) {
 		model.addAttribute("documentNo", documentNo);
 		return "signLevel2";
 	}

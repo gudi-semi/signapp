@@ -30,7 +30,8 @@
             	    contentType: 'application/json; charset=UTF-8',
             	    data: JSON.stringify({
             	        documentNo: $('#documentNo').val(),
-            	        approverName: 1,
+            	        approverName: "${sessionScope.loginName}",
+            	        approverId : "${sessionScope.loginId}",
             	        fileNameLv2: signaturePad.toDataURL(),
             	        signStatusLv2: $('#signStatusLv2').val()
             	    })
@@ -51,7 +52,9 @@
 <p>document1 : ${document.documentNo}</p>
 <p>document2 : ${documentNo}</p>
 <p>서명자: ${sessionScope.loginName}</p>
+<p>id : ${sessionScope.loginId}</p>
 <input type="hidden" id="documentNo" value="${documentNo}">
+<input type="hidden" id="loginId" value="${sessionScope.loginId}">
 <input type="hidden" id="approverName" value="${sessionScope.loginName}">
 <canvas style="border: 1px solid #FF0000;"></canvas><br>
 <label>결재 상태:
