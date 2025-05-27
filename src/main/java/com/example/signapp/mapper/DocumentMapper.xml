@@ -25,7 +25,15 @@
 		s.sign_status_lv2 AS signStatusLv2
 	FROM document d
 	JOIN employee e ON d.employee_id = e.employee_id
-	LEFT JOIN sign s ON d.document_no = s.document_no
+	LEFT JOIN (
+		SELECT *
+		FROM sign
+		WHERE sign_id IN (
+			SELECT MIN(sign_id)
+			FROM sign
+			GROUP BY document_no
+		)
+	) s ON d.document_no = s.document_no
 	WHERE d.document_no = #{documentNo}
 </select>
 
