@@ -27,12 +27,7 @@ public class SignRest {
     }
 
     @PostMapping("/signLevel2")
-    public String addSignLevel2(@RequestBody Document document, SignForm signForm, Model model) {
-    	model.addAttribute("documentNo", document.getDocumentNo());
-        log.info("들어온 documentNo 확인1: {}", document.getDocumentNo());  // 맨 처음 확인
-    	log.info("document.tosTring", document.toString());
-        model.addAttribute("documentNo", signForm.getDocumentNo());
-        log.info("들어온 documentNo 확인2: {}", signForm.getDocumentNo());  // 맨 처음 확인
+    public String addSignLevel2(@RequestBody SignForm signForm) {
         signService.saveSignImageAndSetFileName(signForm, 2);
         signService.addSignLevel2(signForm);
         log.info("DB저장 전 documentNo: {}", signForm.getDocumentNo());

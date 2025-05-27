@@ -35,7 +35,8 @@ public class SignService {
                 base64Img = signForm.getFileNameLv1().split(",")[1];
                 signForm.setFileNameLv1(filename);
             } else {
-                base64Img = signForm.getFileNameLv2().split(",")[1];
+            	log.info("test"+filename);
+            	base64Img = signForm.getFileNameLv2().split(",")[1];
                 signForm.setFileNameLv2(filename);
             }
             fos.write(Base64.getDecoder().decode(base64Img));

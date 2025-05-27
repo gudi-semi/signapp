@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.signapp.dto.Document;
 import com.example.signapp.dto.Employee;
@@ -28,7 +29,8 @@ public class SignController {
 	
 	// 레벨2사인 추가
 	@GetMapping("/signLevel2")
-	public String signLevel2() {
+	public String signLevel2(@RequestParam int documentNo, Model model) {
+		model.addAttribute("documentNo", documentNo);
 		return "signLevel2";
 	}
 	
