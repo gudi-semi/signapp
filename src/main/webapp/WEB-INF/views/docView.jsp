@@ -92,9 +92,13 @@
 		</table>
 
 	</div>
+	
 
-	<!-- 수정 / 삭제 -->
-	<c:if test="${document.signStatusLv1 == null || document.signStatusLv2 == null}">
+	<!-- 본인이 작성한 글인 경우 and 결재 진행하기 전인 경우에만 수정 및 삭제 가능 -->
+	<c:if test="${sessionScope.loginEmployee.employeeId == document.employeeId 
+				and document.documentStatus == '대기'}">
+	
+		<!-- 수정 / 삭제 -->
 		<a href="/updateDocView?documentNo=${document.documentNo}">수정하기</a>
 		<a href="#" id="deleteDocumentLink">삭제하기</a> <!-- href="#" : 임시 링크 역할 -->
 	
@@ -107,7 +111,6 @@
 	<a href="/docList">목록으로 돌아가기</a>
 
 
-	<!-- 삭제 -->
 	<script>
 		const employeeLevel = '${sessionScope.employeeLevel}';
 		
@@ -125,6 +128,7 @@
 	        }
 	    });
 	
+	    <!-- 삭제 -->
 		$('#deleteDocumentLink').click(function(e) {
 			e.preventDefault(); // 기본 동작 막기 -> 링크처럼(href="#") 동작하지 않도록 차단
 			if(confirm('정말 삭제하시겠습니까?')) { // [확인], [취소]

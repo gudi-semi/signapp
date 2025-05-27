@@ -9,7 +9,8 @@
 <select id="selectDocumentList" resultType="com.example.signapp.dto.Document">
     SELECT d.document_no AS documentNo,
            d.document_title AS documentTitle,
-           e.employee_name AS employeeName
+           e.employee_name AS employeeName,
+           d.document_status AS documentStatus
       FROM document d
       LEFT JOIN employee e ON d.employee_id = e.employee_id
 </select>
@@ -20,20 +21,11 @@
 		d.document_no AS documentNo,
 		d.document_title AS documentTitle,
 		d.document_content AS documentContent,
+		d.employee_id AS employeeId,
 		e.employee_name AS employeeName,
-		s.sign_status_lv1 AS signStatusLv1,
-		s.sign_status_lv2 AS signStatusLv2
+		d.document_status AS documentStatus
 	FROM document d
 	JOIN employee e ON d.employee_id = e.employee_id
-	LEFT JOIN (
-		SELECT *
-		FROM sign
-		WHERE sign_id IN (
-			SELECT MIN(sign_id)
-			FROM sign
-			GROUP BY document_no
-		)
-	) s ON d.document_no = s.document_no
 	WHERE d.document_no = #{documentNo}
 </select>
 

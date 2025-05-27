@@ -12,7 +12,7 @@
             <th>문서 번호</th>
             <th>제목</th>
             <th>작성자</th>
-         
+         	<th>진행 상태</th>
         </tr>
         <c:forEach var="doc" items="${documentList}">
             <tr>
@@ -23,7 +23,12 @@
                 	</a>
                 </td>
                 <td>${doc.employeeName}</td>
-                
+                <td>
+                	<c:if test="${doc.documentStatus == '대기'}">⏳ 대기</c:if>
+                	<c:if test="${doc.documentStatus == '승인'}">✅ 승인</c:if>
+                	<c:if test="${doc.documentStatus == '거절'}">❌ 거절</c:if>
+                	<c:if test="${doc.documentStatus == '보류'}">⏸️ 보류</c:if>
+                </td>
             </tr>
         </c:forEach>
     </table>
