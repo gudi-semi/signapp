@@ -68,6 +68,7 @@
 						<form action="/signLevel1" method="get">
 							<input type="hidden" name="documentNo" value="${document.documentNo}">
 							<button type="submit" id="sign-linkLevel1" class="sign-link">서명</button>
+							<img src="data:image/png;base64,${sign.fileNameLv1}" width="60px" />
 						</form>
 					</td>
 				</tr>
@@ -108,7 +109,11 @@
 	</c:if>
 
 	<br><br>
-	<a href="/docList">목록으로 돌아가기</a>
+	<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;"> <!-- 돌아가기, 완료 가로로 배치 // 양끝으로 배치 -->
+  <a href="/docList" style="color: purple; text-decoration: underline;">목록으로 돌아가기</a>
+  
+  <button onclick="location.href='/docList'" style="color: purple; border: 1px solid black;">완료</button>
+</div>
 
 
 	<script>

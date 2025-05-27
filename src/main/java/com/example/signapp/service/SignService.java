@@ -22,36 +22,33 @@ public class SignService {
     @Autowired
     private SignMapper signMapper;
 
-    public boolean saveSignImageAndSetFileName(SignForm signForm, int level) {
-        String ext = ".png";
-        String filename = UUID.randomUUID().toString().replace("-", "") + ext;
-
-        FileOutputStream fos = null;
+    // Base64 문자열을 DB에 저장하는 메서드
+    public boolean saveSignBase64(SignForm signForm, int level) {
         try {
-            fos = new FileOutputStream("c:\\sign_img\\" + filename);
-            // signForm에 들어있는 base64 이미지 데이터에서 "data:image/png;base64," 제거 후 디코딩
-            String base64Img = null;
-            if(level == 1) {
-                base64Img = signForm.getFileNameLv1().split(",")[1];
-                signForm.setFileNameLv1(filename);
+            if (level == 1) {
+                String base64Img = signForm.getFileNameLv1(); // data:image/png;base64,... 포함
+                if (base64Img != null && base64Img.contains(",")) {
+                    // DB에는 전체 문자열 저장 (웹에서 그대로 출력 가능)
+                    signForm.setFileNameLv1(base64Img);
+                } else {
+                    throw new IllegalArgumentException("유효하지 않은 base64 문자열입니다. (Level 1)");
+                }
+                // Mapper 호출
+                signMapper.addSignLevel1(signForm);
+            } else if (level == 2) {
+                String base64Img = signForm.getFileNameLv2();
+                if (base64Img != null && base64Img.contains(",")) {
+                    signForm.setFileNameLv2(base64Img);
+                } else {
+                    throw new IllegalArgumentException("유효하지 않은 base64 문자열입니다. (Level 2)");
+                }
+                signMapper.addSignLevel2(signForm);
             } else {
-            	log.info("test"+filename);
-            	base64Img = signForm.getFileNameLv2().split(",")[1];
-                signForm.setFileNameLv2(filename);
+                throw new IllegalArgumentException("지원되지 않는 서명 레벨입니다. (1 또는 2만 허용)");
             }
-            fos.write(Base64.getDecoder().decode(base64Img));
-        } catch (FileNotFoundException e) {
-            log.error("파일 생성 실패 @Transactional 롤백");
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            log.error("파일 디코딩 실패 @Transactional 롤백");
-            throw new RuntimeException(e);
-        } finally {
-            try {
-                if (fos != null) fos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        } catch (Exception e) {
+            log.error("서명 저장 중 오류 발생", e);
+            throw new RuntimeException("서명 저장 실패: " + e.getMessage());
         }
 
         return true;
@@ -63,5 +60,10 @@ public class SignService {
 
     public void addSignLevel2(SignForm signForm) {
         signMapper.addSignLevel2(signForm);
+    }
+    
+    // 서명 불러오기 (문서 번호 기준)
+    public SignForm getSignByDocumentNo(int documentNo) {
+        return signMapper.selectSignByDocumentNo(documentNo);
     }
 }

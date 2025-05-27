@@ -7,4 +7,5 @@ import com.example.signapp.dto.SignForm;
 public interface SignMapper {
     int addSignLevel1(SignForm signForm);  // level1 결재 처리
     int addSignLevel2(SignForm signForm);  // level2 결재 처리
+    SignForm selectSignByDocumentNo(int documentNo); // 서명 불러오기
 }

@@ -9,6 +9,7 @@
 	 #{fileNameLv2}, NOW() + INTERVAL 9 HOUR);
 
 	</insert>
+	
 	<update id="addSignLevel1"
 		parameterType="com.example.signapp.dto.SignForm">
 		UPDATE sign 
@@ -20,5 +21,30 @@
 		last_sign_time = NOW() + INTERVAL 9 HOUR
 		WHERE document_no = #{documentNo}
 	</update>
+	<!-- 레엘2-->
+	<update id="modifySignLevel2"
+		parameterType="com.example.signapp.dto.SignForm">
+		UPDATE sign 
+		SET 
+		sign_status_lv2 = #{signStatusLv2},
+		file_name_lv2 = #{fileNameLv2},
+		last_approver_id = #{approverId},
+		last_approver_name = #{approverName},
+		last_sign_time = NOW() + INTERVAL 9 HOUR
+		WHERE document_no = #{documentNo}
+	</update>
 
+<select id="selectSignByDocumentNo" resultType="com.example.signapp.dto.SignForm">
+    SELECT 
+        sign_id AS signId,
+        document_no AS documentNo,
+        last_approver_name AS approverName,
+        sign_status_lv1 AS signStatusLv1,
+        sign_status_lv2 AS signStatusLv2,
+        file_name_lv1 AS fileNameLv1,
+        file_name_lv2 AS fileNameLv2,
+        last_sign_time AS signTime
+    FROM sign
+    WHERE document_no = #{documentNo}
+</select>
 </mapper>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.signapp.dto.Document;
 import com.example.signapp.dto.Employee;
+import com.example.signapp.dto.SignForm;
 import com.example.signapp.service.DocumentService;
 import com.example.signapp.service.SignService;
 
@@ -25,7 +26,10 @@ public class SignController {
 	@GetMapping("/signLevel1")
 	public String signLevel1(@RequestParam int documentNo
 							, Model model) {
+	    Document document = documentService.getDocumentByNo(documentNo);
+	    SignForm sign = signService.getSignByDocumentNo(documentNo); // 서명 불러오기
 		model.addAttribute("documentNo", documentNo);
+		model.addAttribute("sign", sign); // JSP에서 ${sign.xxx}로 사용 가능
 		return "signLevel1";
 	}
 	
@@ -43,10 +47,10 @@ public class SignController {
     public String docView(int documentNo, Model model) {
     	// 1) 문서 번호로 문서 조회
     	Document document = documentService.getDocumentByNo(documentNo);
-    	
+    	SignForm sign = signService.getSignByDocumentNo(documentNo); // 서명 불러오기
     	// 2) 조회한 문서를 모델에 담아서 JSP로 넘김
     	model.addAttribute("document", document);
-    	
+    	model.addAttribute("sign", sign); // JSP에서 ${sign.xxx}로 사용 가능
     	// 3) docOne 페이지로 이동
     	return "docView";
     	
