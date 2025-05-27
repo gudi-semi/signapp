@@ -51,8 +51,8 @@
 			<table border="1">
 				<tr>
 					<td width="50" height="20" align="center">작성자</td>
-					<td width="50" height="20" align="center">결재 2</td>
 					<td width="50" height="20" align="center">결재 1</td>
+					<td width="50" height="20" align="center">결재 2</td>
 				</tr>
 				<tr>
 				<td width="80" height="80" align="center">
