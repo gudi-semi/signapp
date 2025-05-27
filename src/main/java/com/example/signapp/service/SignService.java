@@ -29,7 +29,7 @@ public class SignService {
 		String filename = UUID.randomUUID().toString().replace("-", "")+ext;
 		
 		// 1) mapper 호출
-		signMapper.insertSign(signForm);
+	
 		// 2) 이미지를 디코딩해서 원하는 위치에 저장
 		FileOutputStream fos = null;
 		try {
@@ -52,5 +52,8 @@ public class SignService {
 		}
 		
 		return true;
+	}
+	public int confirmSign(SignForm signForm) {
+		return signMapper.confirmSign(signForm);
 	}
 }

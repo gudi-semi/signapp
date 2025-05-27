@@ -23,30 +23,31 @@
 		});
 		
 		// AJax로 SignaturePad객체안 사인이미지를 서버로 전송
-		$('#btnSign').click(function(){
-			if(signaturePad.isEmpty()) {
-				alert('사인을 먼저 해 주세요');
-			} else {
-				// $.ajax({}).done().fail();
-				
-				$.ajax({
-					asyn : true // true면 비동기(백그라운드로 실행)
-					, url : '/addSign'
-					, type : 'post'
-					, data : {
-						signid: $('#id').text()
-						, fileName: signaturePad.toDataURL() // signaturePad.toDataURL("image/jpeg"); 인수 생략시 기본값은 png 이미지
-					} // 로그인 사용자 id와 signaturePad객체안의 사인 이미지
-				}).done(function(data){
-					alert(data); // data = 결제완료
-					// 사인을 초기화... signaturePad.clear();
-					// js로 페이지 이동 location.href='이동할페이지'
-				}).fail(function(){
-					alert('결제실패');
-				});
+	('#btnSign').click(function () {
+	if (signaturePad.isEmpty()) {
+		alert('사인을 먼저 해 주세요');
+	} else {
+		// 사인 이미지와 문서 번호, 결재자 ID를 포함하여 전송
+		$.ajax({
+			async: true,
+			url: '/signLevel1',
+			type: 'post',
+			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+			data: {
+				documentNo: $('#documentNo').val(),       // 문서 번호
+				approverId: $('#approverId').val(),       // 결재자 ID
+				fileName: signaturePad.toDataURL(),      // 서명이미지 
+				signStatusLv1: $('#signStatusLv1').val()  // 결재 상태 
 			}
+		}).done(function (data) {
+			alert(data); // 예: '결재 완료'
+			signaturePad.clear();
+			location.href = '/docList'; // 결재 후 문서 리스트로 이동
+		}).fail(function () {
+			alert('결재 실패');
 		});
-	});
+	}
+});
 	
 	
 </script>
