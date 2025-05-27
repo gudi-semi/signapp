@@ -46,5 +46,21 @@
         last_sign_time AS signTime
     FROM sign
     WHERE document_no = #{documentNo}
+    ORDER BY sign_id DESC
+    LIMIT 1
 </select>
+<!-- sign 중복 제거(최신것만 남기고 삭제) -->
+<delete id="deleteOldSignsExceptLatest" parameterType="int">
+    DELETE FROM sign
+    WHERE document_no = #{documentNo}
+      AND sign_id NOT IN (
+        SELECT * FROM (
+            SELECT MAX(sign_id)
+            FROM sign
+            WHERE document_no = #{documentNo}
+        ) AS tmp
+    )
+</delete>
+
+
 </mapper>
