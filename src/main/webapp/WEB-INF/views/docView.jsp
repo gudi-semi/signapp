@@ -60,13 +60,13 @@
 					<td width="80" height="80" align="center">
 						<form action="/signLevel2" method="get">
 							<input type="hidden" name="documentNo" value="${document.documentNo}">
-							<button type="submit" class="sign-link">서명</button>
+							<button type="submit" id="sign-linkLevel2" class="sign-link">서명</button>
 						</form>
 					</td>
 					<td width="80" height="80" align="center">
 						<form action="/signLevel1" method="get">
 							<input type="hidden" name="documentNo" value="${document.documentNo}">
-							<button type="submit" class="sign-link">서명</button>
+							<button type="submit" id="sign-linkLevel1" class="sign-link">서명</button>
 						</form>
 					</td>
 				</tr>
@@ -108,6 +108,22 @@
 
 	<!-- 삭제 -->
 	<script>
+		const employeeLevel = '${sessionScope.employeeLevel}';
+		
+	    $('#sign-linkLevel2').click(function () {
+	        if (employeeLevel !== 'level2') {
+	            alert('접근권한이 없습니다.');
+	            return false;
+	        }
+	    });
+	    
+	    $('#sign-linkLevel1').click(function () {
+	        if (employeeLevel !== 'level1') {
+	            alert('접근권한이 없습니다.');
+	            return false;
+	        }
+	    });
+	
 		$('#deleteDocumentLink').click(function(e) {
 			e.preventDefault(); // 기본 동작 막기 -> 링크처럼(href="#") 동작하지 않도록 차단
 			if(confirm('정말 삭제하시겠습니까?')) { // [확인], [취소]
