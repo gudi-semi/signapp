@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.signapp.dto.Document;
+import com.example.signapp.dto.SignForm;
 import com.example.signapp.mapper.DocumentMapper;
 
 @Service
@@ -41,4 +42,12 @@ public class IDocumentService implements DocumentService {
 	public int deleteDocument(Document document) {
 		return documentMapper.deleteDocument(document);
 	}
+	@Override
+	public void updateDocumentStatus(int documentNo, String status) {
+	        Document document = new Document();
+	        document.setDocumentNo(documentNo);
+	        document.setDocumentStatus(status);
+	        documentMapper.updateDocumentStatus(document);
+	    }
+
 }

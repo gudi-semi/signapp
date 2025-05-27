@@ -34,6 +34,6 @@
     </div>
     <div class="nav-links">
         <a href="/">홈으로</a>
-        <a href="/logout">로그아웃</a>
+        <a href="logout">로그아웃</a>
     </div>
 </div>

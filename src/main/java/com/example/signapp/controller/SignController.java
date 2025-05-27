@@ -84,6 +84,11 @@ public class SignController {
     public String docList(Model model) {
         List<Document> documentList = documentService.getDocumentList();
         model.addAttribute("documentList", documentList);
+        //두개의 상태값 비교해서 doc의 상태 업데이트
+        for (Document doc : documentList) {
+            signService.getSignStatusByDocumentNo(doc.getDocumentNo());
+        }
+        
         return "docList";
     }
     // filter - level1

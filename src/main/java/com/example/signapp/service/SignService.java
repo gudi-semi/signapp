@@ -1,10 +1,5 @@
 package com.example.signapp.service;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Base64;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +16,8 @@ import lombok.extern.slf4j.Slf4j;
 public class SignService {
     @Autowired
     private SignMapper signMapper;
-
+    @Autowired
+    private DocumentService documentService;
     // Base64 문자열을 DB에 저장하는 메서드
     public boolean saveSignBase64(SignForm signForm, int level) {
         try {
@@ -65,5 +61,23 @@ public class SignService {
     // 서명 불러오기 (문서 번호 기준)
     public SignForm getSignByDocumentNo(int documentNo) {
         return signMapper.selectSignByDocumentNo(documentNo);
+    }
+    public SignForm getSignStatusByDocumentNo(int documentNo) {
+        SignForm result = signMapper.selectSignByDocumentNo(documentNo);
+
+        if (result != null) {
+            String lv1 = result.getSignStatusLv1();
+            String lv2 = result.getSignStatusLv2();
+
+            if ("거절".equals(lv1)) {
+                documentService.updateDocumentStatus(documentNo, "거절");
+            } else if ("보류".equals(lv1)) {
+                documentService.updateDocumentStatus(documentNo, "보류");
+            } else if ("승인".equals(lv1) && "승인".equals(lv2)) {
+                documentService.updateDocumentStatus(documentNo, "승인");
+            }
+        }
+
+        return result;
     }
 }

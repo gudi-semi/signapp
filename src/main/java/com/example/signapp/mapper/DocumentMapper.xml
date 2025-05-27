@@ -44,5 +44,10 @@
 	DELETE FROM document
 	WHERE document_no = #{documentNo}
 </delete>
-
+<!-- 상태비교후 업데이트 -->
+<update id="updateDocumentStatus" parameterType="map">
+    UPDATE document
+    SET document_status = #{documentStatus}
+    WHERE document_no = #{documentNo}
+</update>
 </mapper> 

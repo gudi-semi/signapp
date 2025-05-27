@@ -3,6 +3,7 @@ package com.example.signapp.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.example.signapp.dto.Document;
 @Mapper
@@ -18,4 +19,10 @@ public interface DocumentMapper {
 	
 	// 문서 삭제
 	int deleteDocument(Document document);
+	
+	//문서 상태 업데이트
+	int updateDocumentStatus(Document document);
+	
+
+	
 }
