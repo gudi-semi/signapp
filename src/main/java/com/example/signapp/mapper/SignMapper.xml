@@ -21,8 +21,9 @@
 		last_sign_time = NOW() + INTERVAL 9 HOUR
 		WHERE document_no = #{documentNo}
 	</update>
-	<!-- 레엘2-->
-	<update id="modifySignLevel2"
+	
+	<!--  서명 수정 쿼리 // 필요없을 시 삭제
+	<update id="modifySignLevel2" 
 		parameterType="com.example.signapp.dto.SignForm">
 		UPDATE sign 
 		SET 
@@ -33,6 +34,7 @@
 		last_sign_time = NOW() + INTERVAL 9 HOUR
 		WHERE document_no = #{documentNo}
 	</update>
+	 -->
 
 <select id="selectSignByDocumentNo" resultType="com.example.signapp.dto.SignForm">
     SELECT 
