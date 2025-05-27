@@ -67,6 +67,7 @@
 <p>document2 : ${documentNo}</p>
 <p>서명자: ${sessionScope.loginName}</p>
 <p>id : ${sessionScope.loginId}</p>
+<p>레벨 : ${sessionScope.employeeLevel }
 <input type="hidden" id="documentNo" value="${documentNo}">
 <input type="hidden" id="loginId" value="${sessionScope.loginId}">
 <input type="hidden" id="approverName" value="${sessionScope.loginName}">
