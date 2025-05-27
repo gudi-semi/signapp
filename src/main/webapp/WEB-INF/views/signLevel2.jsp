@@ -83,6 +83,6 @@
 <br><br>
 <button type="button" onclick="location.href='/docView?documentNo=' + document.getElementById('documentNo').value">돌아가기</button>
 <button type="button" id="btnClear">지우기</button>
-<button type="button" id="btnSign">결제하기</button>
+<button type="button" id="btnSign">확인</button>
 </body>
 </html>

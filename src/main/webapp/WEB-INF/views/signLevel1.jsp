@@ -14,7 +14,21 @@
             maxWidth: 2,
             penColor: '#000000'
         });
+		
+    	// 처음 상태: 결재 상태가 "승인"이 아니면 숨기기
+        if ($('#signStatusLv1').val() !== '승인') {
+            $('canvas').hide();
+        }
 
+        // select 값이 변경될 때 canvas 보이기/숨기기
+        $('#signStatusLv1').change(function () {
+            if ($(this).val() === '승인') {
+                $('canvas').show();
+            } else {
+                $('canvas').hide();
+            }
+        });
+        
         $('#btnClear').click(function () {
             signaturePad.clear();
         });
@@ -69,6 +83,6 @@
 <br><br>
 <button type="button" onclick="location.href='/docView?documentNo=' + document.getElementById('documentNo').value">돌아가기</button>
 <button type="button" id="btnClear">지우기</button>
-<button type="button" id="btnSign">결제하기</button>
+<button type="button" id="btnSign">확인</button>
 </body>
 </html>
