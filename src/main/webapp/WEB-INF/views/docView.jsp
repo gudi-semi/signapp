@@ -59,18 +59,31 @@
 						${document.employeeName}
 				</td>
 					<td width="80" height="80" align="center">
-						<form action="/signLevel2" method="get">
-							<input type="hidden" name="documentNo" value="${document.documentNo}">
-							<button type="submit" id="sign-linkLevel2" class="sign-link">서명</button>
-						</form>
+					    <c:choose>
+					        <c:when test="${not empty sign.fileNameLv1}">
+					            <img src="${sign.fileNameLv1}" width="60px" />
+					        </c:when>
+					        <c:otherwise>
+					            <form action="/signLevel1" method="get">
+					                <input type="hidden" name="documentNo" value="${document.documentNo}">
+					                <button type="submit" id="sign-linkLevel1" class="sign-link">서명</button>
+					            </form>
+					        </c:otherwise>
+					    </c:choose>
 					</td>
 					<td width="80" height="80" align="center">
-						<form action="/signLevel1" method="get">
-							<input type="hidden" name="documentNo" value="${document.documentNo}">
-							<button type="submit" id="sign-linkLevel1" class="sign-link">서명</button>
-							<img src="data:image/png;base64,${sign.fileNameLv1}" width="60px" />
-						</form>
-					</td>
+				    <c:choose>
+				        <c:when test="${not empty sign.fileNameLv2}">
+				            <img src="${sign.fileNameLv2}" width="60px" />
+				        </c:when>
+				        <c:otherwise>
+				            <form action="/signLevel2" method="get">
+				                <input type="hidden" name="documentNo" value="${document.documentNo}">
+				                <button type="submit" id="sign-linkLevel2" class="sign-link">서명</button>
+				            </form>
+				        </c:otherwise>
+				    </c:choose>
+				</td>
 				</tr>
 			</table>
 		</div>
