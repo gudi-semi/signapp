@@ -14,6 +14,20 @@
             maxWidth: 2,
             penColor: '#000000'
         });
+        
+    	// 처음 상태: 결재 상태가 "승인"이 아니면 숨기기
+        if ($('#signStatusLv1').val() !== '승인') {
+            $('canvas').hide();
+        }
+
+        // select 값이 변경될 때 canvas 보이기/숨기기
+        $('#signStatusLv1').change(function () {
+            if ($(this).val() === '승인') {
+                $('canvas').show();
+            } else {
+                $('canvas').hide();
+            }
+        });
 
         $('#btnClear').click(function () {
             signaturePad.clear();
