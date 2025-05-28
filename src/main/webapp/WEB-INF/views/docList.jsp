@@ -24,7 +24,7 @@
 						test="${doc.documentStatus == '승인'}">✅ 승인</c:if> <c:if
 						test="${doc.documentStatus == '거절'}">❌ 거절</c:if> 
 						<c:if
-						test="${doc.documentStatus == '진행'}">🕒 진행중</c:if><c:if
+						test="${doc.documentStatus == '진행중'}">🕒 진행중</c:if><c:if
 						test="${doc.documentStatus == '보류'}">⏸️ 보류</c:if></td>
 						test
 			</tr>
