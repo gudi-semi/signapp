@@ -66,15 +66,15 @@ public class SignService {
             String lv1 = result.getSignStatusLv1();
             String lv2 = result.getSignStatusLv2();
 
-            if ("거절".equals(lv1)) {
+            if ("거절".equals(lv2)) {
                 documentService.updateDocumentStatus(documentNo, "거절");
-            } else if ("보류".equals(lv1)) {
+            } else if ("보류".equals(lv2)) {
                 documentService.updateDocumentStatus(documentNo, "보류");
             } else if ("승인".equals(lv1) && "승인".equals(lv2)) {
                 documentService.updateDocumentStatus(documentNo, "승인");
             } else if ("대기".equals(lv1) && "승인".equals(lv2)) {
             	documentService.updateDocumentStatus(documentNo, "진행중");
-            }
+            } 
         }
 
         return result;
