@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.signapp.dto.Employee;
 import com.example.signapp.service.LoginService;
@@ -55,5 +57,13 @@ public class LoginController {
     public String joinEmployee(@ModelAttribute Employee employee) {
         loginService.joinEmployee(employee);
         return "redirect:/login";
+    }
+    
+    // id검색기능 추가
+    @ResponseBody
+    @PostMapping("/idck")
+    public String idck(@RequestParam String id) {
+    	boolean res = loginService.searchId(id);
+    	return res ? "fail" : "success";
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.signapp.dto.Document;
 import com.example.signapp.dto.Employee;
+import com.example.signapp.dto.Page;
 import com.example.signapp.dto.SignForm;
 import com.example.signapp.service.DocumentService;
 import com.example.signapp.service.SignService;
@@ -78,14 +79,29 @@ public class SignController {
         return "redirect:/docList";  
     }
     @GetMapping("/docList")
-    public String docList(Model model) {
-        List<Document> documentList = documentService.getDocumentList();
+    public String docList(Model model
+    					,@RequestParam(defaultValue = "1") int currentPage
+    					,@RequestParam(defaultValue = "10") int rowPerPage
+    					,@RequestParam(defaultValue = "all") String searchOption
+    					,@RequestParam(defaultValue = "") String searchWord) {
+    	// 페이징 및 검색기능 위해 page 객체 생성
+    	// 검색 옵션 및 단어에 따라 총 수 구하기 위해 맹글었음
+    	int totalCount = documentService.getTotalCount(searchOption, searchWord);
+    	Page page = new Page(rowPerPage, currentPage, totalCount, searchOption, searchWord);
+    	
+        List<Document> documentList = documentService.getDocumentList(page);
         model.addAttribute("documentList", documentList);
+        // model에 page 넣기
+        model.addAttribute("page", page);
         //두개의 상태값 비교해서 doc의 상태 업데이트
         for (Document doc : documentList) {
+        	if (doc == null) continue;
             signService.getSignStatusByDocumentNo(doc.getDocumentNo());
         }
         
+        System.out.println("searchOption=" + searchOption + ", searchWord=" + searchWord);
+        System.out.println("Page searchOption=" + page.getSearchOption() + ", searchWord=" + page.getSearchWord());
+
         return "docList";
     }
     // filter - level1

@@ -10,5 +10,5 @@ import com.example.signapp.dto.Employee;
 public interface ILoginService {
 	Employee login(Employee member); 	//로그인
 	void joinEmployee(Employee employee);
-	
+	boolean searchId(String id);
 }

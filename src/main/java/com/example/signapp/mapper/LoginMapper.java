@@ -12,6 +12,6 @@ import com.example.signapp.dto.Employee;
 public interface LoginMapper {
 	Employee login(Employee employee); //로그인
 	void joinEmployee(Employee Employee); //회원가입
-	
+	int searchId(String id);
 
 }

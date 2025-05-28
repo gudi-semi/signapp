@@ -7,28 +7,34 @@
 	<select id="login"
 		parameterType="com.example.signapp.dto.Employee"
 		resultType="com.example.signapp.dto.Employee">
-		SELECT employee_id AS employeeId, employee_name AS employeeName , employee_level AS employeeLevel
+		SELECT employee_id AS employeeId, employee_name AS
+		employeeName , employee_level AS employeeLevel
 		FROM employee
 		WHERE
 		employee_id = #{employeeId}
 		AND employee_pw = #{employeePw}
 	</select>
 	<!-- 회원가입 -->
-		<insert id="joinEmployee" parameterType="com.example.signapp.dto.Employee">
-    INSERT INTO employee (
-        employee_name,
-        employee_id,
-        employee_level,
-        employee_pw
-    )
-    VALUES (
-        #{employeeName},
-        #{employeeId},
-        #{employeeLevel},
-        #{employeePw}
-    )
-</insert>
+	<insert id="joinEmployee"
+		parameterType="com.example.signapp.dto.Employee">
+		INSERT INTO employee (
+		employee_name,
+		employee_id,
+		employee_level,
+		employee_pw
+		)
+		VALUES (
+		#{employeeName},
+		#{employeeId},
+		#{employeeLevel},
+		#{employeePw}
+		)
+	</insert>
 
+	<!-- id 중복 검색 -->
+	<select id="searchId" resultType="int" parameterType="String">
+		SELECT COUNT(*) FROM employee WHERE employee_id = #{id}
+	</select>
 
 
 </mapper>

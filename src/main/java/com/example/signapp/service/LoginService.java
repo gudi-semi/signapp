@@ -33,7 +33,10 @@ public class LoginService implements ILoginService {
 		loginMapper.joinEmployee(employee);
 	}
 	
-	
+	@Override
+	public boolean searchId(String id) {
+		return loginMapper.searchId(id) > 0;
+	}
 
 	
 }

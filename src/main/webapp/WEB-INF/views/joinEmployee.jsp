@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>회원가입</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body class="bg-light">
@@ -13,10 +14,13 @@
                 <label for="employeeName" class="form-label">이름</label>
                 <input type="text" class="form-control" id="employeeName" name="employeeName" required>
             </div>
-              <div class="mb-3">
-                <label for="employeeId" class="form-label">ID</label>
-                <input type="text" class="form-control" id="employeeId" name="employeeId" required>
-            </div>
+			<div class="mb-3">
+			    <label for="employeeId" class="form-label">ID</label>
+			    <div class="input-group">
+			    	<input type="text" class="form-control" id="employeeId" name="employeeId" required style="width:200px;">
+			    	<button type="button" id="searchIdBtn" class="btn btn-secondary">중복확인</button>
+			    </div>
+			</div>
             <div class="mb-3">
                 <label for="employeePw" class="form-label">비밀번호</label>
                 <input type="password" class="form-control" id="employeePw" name="employeePw" required>
@@ -29,10 +33,27 @@
         <option value="level2">level2</option>
         <option value="level3">level3</option>
     </select>
-</div>
+	</div>
             <button type="submit" class="btn btn-success">회원가입</button>
             <a href="login" class="btn btn-secondary">취소</a>
         </form>
     </div>
+    <script>
+    	$('#searchIdBtn').click(function(){
+			let id = $('#employeeId').val()
+			$.ajax({
+				url:'/idck',
+				type:'post',
+				data: {id : id},
+				success: function(res) {
+		            if (res == 'success') {
+		                alert('사용 가능한 아이디입니다.')
+		            } else {
+		                alert('이미 사용중인 아이디입니다.');
+		            }
+		        }
+			})
+    	})
+    </script>
 </body>
 </html>

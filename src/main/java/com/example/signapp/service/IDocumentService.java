@@ -1,12 +1,14 @@
 package com.example.signapp.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.signapp.dto.Document;
-import com.example.signapp.dto.SignForm;
+import com.example.signapp.dto.Page;
 import com.example.signapp.mapper.DocumentMapper;
 
 @Service
@@ -16,8 +18,8 @@ public class IDocumentService implements DocumentService {
     private DocumentMapper documentMapper;
 
     @Override
-    public List<Document> getDocumentList() {
-        return documentMapper.selectDocumentList();
+    public List<Document> getDocumentList(Page page) {
+        return documentMapper.selectDocumentList(page);
     }
 
     @Override
@@ -49,5 +51,12 @@ public class IDocumentService implements DocumentService {
 	        document.setDocumentStatus(status);
 	        documentMapper.updateDocumentStatus(document);
 	    }
-
+	// 페이징 및 검색 땜에 맹금
+	@Override
+	public int getTotalCount(String searchOption, String searchWord) {
+		Map<String, Object> param = new HashMap<>();
+	    param.put("searchOption", searchOption);
+	    param.put("searchWord", searchWord);
+	    return documentMapper.getTotalCount(param);
+	}
 }
