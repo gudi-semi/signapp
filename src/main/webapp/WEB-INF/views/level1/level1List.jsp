@@ -47,5 +47,6 @@
 		</select> <input type="text" name="searchWord" id="searchWord" value="${page.searchWord}">
 		<button type="submit">검색</button>
 	</form>
+	<a href="/docList">전체 목록</a>
 </body>
 </html>

@@ -6,7 +6,7 @@
 <title>문서 목록</title>
 </head>
 <body>
-	<h2>문서 목록</h2>
+	<h2>전체 문서 목록</h2>
 	<table border="1">
 		<tr>
 			<th>문서 번호</th>

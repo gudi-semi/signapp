@@ -191,6 +191,13 @@
 	<button onclick="location.href='/docList'" style="color: purple; border: 1px solid black;">저장</button>
 </div>
 
+ <c:if test="${loginEmployee.employeeLevel == 'level1'}">
+ 	<a href="/level1/level1List">lv1미결재 문서목록으로</a>
+ </c:if>
+ <c:if test="${loginEmployee.employeeLevel == 'level2'}">
+ 	<a href="/level2/level2List">lv2미결재 문서목록으로</a>
+ </c:if>
+
 <!-- 조건부 서명 차단 Script -->
 <script>
 	const employeeLevel = '${sessionScope.employeeLevel}';

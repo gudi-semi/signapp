@@ -45,7 +45,12 @@
                 <a href="logout" class="btn btn-danger w-100">로그아웃</a>
             </div>
         </c:if>
-
+		 <c:if test="${loginEmployee.employeeLevel == 'level1'}">
+         	<a href="/level1/level1List">lv1미결재 문서목록</a>
+         </c:if>
+         <c:if test="${loginEmployee.employeeLevel == 'level2'}">
+         	<a href="/level2/level2List">lv2미결재 문서목록</a>
+         </c:if>
         <!-- 비로그인 상태일 때 -->
         <c:if test="${empty loginEmployee}">
             <h4 class="mb-4 text-center">로그인</h4>
