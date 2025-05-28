@@ -1,5 +1,6 @@
 package com.example.signapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,10 +104,20 @@ public class SignController {
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
         //두개의 상태값 비교해서 doc의 상태 업데이트
+        // 상태 업데이트
         for (Document doc : documentList) {
         	if (doc == null) continue;
-            signService.getSignStatusByDocumentNo(doc.getDocumentNo());
+        	signService.getSignStatusByDocumentNo(doc.getDocumentNo());
         }
+
+        // 상태 바뀐 문서 다시 가져오기
+        List<Document> updatedList = new ArrayList<>();
+        for (Document doc : documentList) {
+        	updatedList.add(documentService.getDocumentByNo(doc.getDocumentNo()));
+        }
+
+        // 최신 상태 반영된 문서 리스트를 모델에 다시 담기
+        model.addAttribute("documentList", updatedList);
         
         System.out.println("searchOption=" + searchOption + ", searchWord=" + searchWord);
         System.out.println("Page searchOption=" + page.getSearchOption() + ", searchWord=" + page.getSearchWord());
