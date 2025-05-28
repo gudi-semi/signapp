@@ -122,7 +122,7 @@
 							<img src="${sign.fileNameLv2}" width="60px" />
 						</c:when>
 						<c:otherwise>
-							<form action="/signLevel2" method="get">
+							<form action="/level2/signLevel2" method="get">
 								<input type="hidden" name="documentNo" value="${document.documentNo}">
 								<button type="submit" id="sign-linkLevel2" class="sign-link">서명</button>
 							</form>
@@ -147,7 +147,7 @@
 							<img src="${sign.fileNameLv1}" width="60px" />
 						</c:when>
 						<c:otherwise>
-							<form action="/signLevel1" method="get">
+							<form action="/level1/signLevel1" method="get">
 								<input type="hidden" name="documentNo" value="${document.documentNo}">
 								<button type="submit" id="sign-linkLevel1" class="sign-link">서명</button>
 							</form>

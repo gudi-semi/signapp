@@ -24,19 +24,19 @@ public class SignController {
 	@Autowired DocumentService documentService;
 	@Autowired SignService signService;
 	// 레벨1사인로 수정
-	@GetMapping("/signLevel1")
+	@GetMapping("/level1/signLevel1")
 	public String signLevel1(@RequestParam Integer documentNo
 							, Model model) {
 		model.addAttribute("documentNo", documentNo);
-		return "signLevel1";
+		return "level1/signLevel1";
 	}
 	
 	// 레벨2사인 추가
-	@GetMapping("/signLevel2")
+	@GetMapping("/level2/signLevel2")
 	public String signLevel2(@RequestParam int documentNo
 							, Model model) {
 		model.addAttribute("documentNo", documentNo);
-		return "signLevel2";
+		return "level2/signLevel2";
 	}
 	
 
