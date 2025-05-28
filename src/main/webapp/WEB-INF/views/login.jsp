@@ -32,9 +32,15 @@
     
         <!-- 로그인 상태일 때 -->
         <c:if test="${not empty loginEmployee}">
-            <h4 class="mb-4 text-center">${loginEmployee.employeeName}님, 환영합니다!</h4>
+            <h4 class="mb-4 text-center">${loginEmployee.employeeLevel}  ${loginEmployee.employeeName}님, 환영합니다! </h4>
             <div class="btn-group-custom">
-                <a href="/docWrite" class="btn btn-primary w-100">기안 작성</a>
+<a 
+    href="/docWrite" 
+    class="btn btn-primary w-100"
+    <c:if test="${loginEmployee.employeeLevel == 'level1' || loginEmployee.employeeLevel == 'level2'}">
+        onclick="alert('해당 권한으로는 기안 작성이 불가능합니다.'); return false;"
+    </c:if>
+>기안 작성</a>
                 <a href="/docList" class="btn btn-secondary w-100">기안 리스트</a>
                 <a href="logout" class="btn btn-danger w-100">로그아웃</a>
             </div>
