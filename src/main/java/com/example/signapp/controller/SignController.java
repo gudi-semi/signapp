@@ -81,7 +81,7 @@ public class SignController {
     @GetMapping("/docList")
     public String docList(Model model
     					,@RequestParam(defaultValue = "1") int currentPage
-    					,@RequestParam(defaultValue = "2") int rowPerPage
+    					,@RequestParam(defaultValue = "10") int rowPerPage
     					,@RequestParam(defaultValue = "all") String searchOption
     					,@RequestParam(defaultValue = "") String searchWord) {
     	// 페이징 및 검색기능 위해 page 객체 생성
