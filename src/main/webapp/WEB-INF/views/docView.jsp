@@ -187,9 +187,7 @@
 </c:if>
 
 <a href="/docList" style="color: purple; text-decoration: underline;">목록으로 돌아가기</a>
-<div style=" text-align: right; width: 600px;">
-	<button onclick="location.href='/docList'" style="color: purple; border: 1px solid black;">저장</button>
-</div>
+
 
  <c:if test="${loginEmployee.employeeLevel == 'level1'}">
  	<a href="/level1/level1List">lv1미결재 문서목록으로</a>
