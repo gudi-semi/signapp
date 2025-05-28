@@ -29,8 +29,8 @@
 
 <div class="header">
     <div class="user-info">
-        <span>${sessionScope.loginName}님 환영합니다!</span><br>
-        <span>접속중인 계정의 현재 레벨은 ${sessionScope.employeeLevel}입니다.</span>
+        <span>${sessionScope.employeeLevel} ${sessionScope.loginName}님 반갑습니다. </span><br>
+      
     </div>
     <div class="nav-links">
         <a href="/">홈으로</a>
