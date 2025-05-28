@@ -31,7 +31,12 @@ public class LoginController {
             model.addAttribute("error", "아이디 또는 비밀번호가 일치하지 않습니다.");
             return "login";
         }
+        session.setAttribute("loginId", loginEmployee.getEmployeeId());
         session.setAttribute("loginEmployee", loginEmployee);
+        session.setAttribute("loginName", loginEmployee.getEmployeeName()); 
+        session.setAttribute("employeeLevel", loginEmployee.getEmployeeLevel());
+        session.setAttribute("loginId", loginEmployee.getEmployeeId());
+        
         return "redirect:/login";  
     }
 
