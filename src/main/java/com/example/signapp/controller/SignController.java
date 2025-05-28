@@ -81,7 +81,7 @@ public class SignController {
     @GetMapping("/docList")
     public String docList(Model model
     					,@RequestParam(defaultValue = "1") int currentPage
-    					,@RequestParam(defaultValue = "10") int rowPerPage
+    					,@RequestParam(defaultValue = "2") int rowPerPage
     					,@RequestParam(defaultValue = "all") String searchOption
     					,@RequestParam(defaultValue = "") String searchWord) {
     	// 페이징 및 검색기능 위해 page 객체 생성
@@ -89,10 +89,19 @@ public class SignController {
     	int totalCount = documentService.getTotalCount(searchOption, searchWord);
     	Page page = new Page(rowPerPage, currentPage, totalCount, searchOption, searchWord);
     	
+        int pageGroupSize = 10;
+        int startPage = ((currentPage - 1) / pageGroupSize) * pageGroupSize + 1;
+        int endPage = startPage + pageGroupSize - 1;
+        if (endPage > page.getLastPage()) {
+            endPage = page.getLastPage();
+        }
+    	
         List<Document> documentList = documentService.getDocumentList(page);
         model.addAttribute("documentList", documentList);
         // model에 page 넣기
         model.addAttribute("page", page);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
         //두개의 상태값 비교해서 doc의 상태 업데이트
         for (Document doc : documentList) {
         	if (doc == null) continue;

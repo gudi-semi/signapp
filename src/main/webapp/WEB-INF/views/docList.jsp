@@ -6,7 +6,7 @@
 <title>문서 목록</title>
 </head>
 <body>
-	<h2>전체 문서 목록</h2>
+	<h2>문서 목록</h2>
 	<table border="1">
 		<tr>
 			<th>문서 번호</th>
@@ -29,21 +29,28 @@
 		</c:forEach>
 	</table>
 	<!-- 페이징 -->
-	<c:if test="${page.lastPage > 1}">
-		<div style="margin-top: 20px;">
-			<c:forEach var="i" begin="1" end="${page.lastPage}">
-				<c:choose>
-					<c:when test="${i == page.currentPage}">
-						<span style="font-weight: bold; color: green;">[${i}]</span>
-					</c:when>
-					<c:otherwise>
-						<a
-							href="/docList?currentPage=${i}&rowPerPage=${page.rowPerPage}&searchOption=${page.searchOption}&searchWord=${page.searchWord}">[${i}]</a>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-		</div>
-	</c:if>
+<c:if test="${page.lastPage > 1}">
+    <div style="margin-top: 20px;">
+        <c:if test="${startPage > 1}">
+            <a href="/docList?currentPage=${startPage - 1}&rowPerPage=${page.rowPerPage}&searchOption=${page.searchOption}&searchWord=${page.searchWord}">[이전]</a>
+        </c:if>
+
+        <c:forEach var="i" begin="${startPage}" end="${endPage}">
+            <c:choose>
+                <c:when test="${i == page.currentPage}">
+                    <span style="font-weight: bold; color: green;">[${i}]</span>
+                </c:when>
+                <c:otherwise>
+                    <a href="/docList?currentPage=${i}&rowPerPage=${page.rowPerPage}&searchOption=${page.searchOption}&searchWord=${page.searchWord}">[${i}]</a>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+
+        <c:if test="${endPage < page.lastPage}">
+            <a href="/docList?currentPage=${endPage + 1}&rowPerPage=${page.rowPerPage}&searchOption=${page.searchOption}&searchWord=${page.searchWord}">[다음]</a>
+        </c:if>
+    </div>
+</c:if>
 	<!-- 검색 -->
 	<form method="get" action="/docList" style="margin-top: 10px;">
 		<select name="searchOption" id="searchOption">
