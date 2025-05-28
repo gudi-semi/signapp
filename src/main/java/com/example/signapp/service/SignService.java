@@ -70,11 +70,11 @@ public class SignService {
                 documentService.updateDocumentStatus(documentNo, "거절");
             } else if ("보류".equals(lv2)) {
                 documentService.updateDocumentStatus(documentNo, "보류");
-            } else if ("승인".equals(lv1) && "승인".equals(lv2)) {
-                documentService.updateDocumentStatus(documentNo, "승인");
             } else if ("대기".equals(lv1) && "승인".equals(lv2)) {
             	documentService.updateDocumentStatus(documentNo, "진행중");
-            } 
+            } else if("승인".equals(lv1)) {
+            	documentService.updateDocumentStatus(documentNo, "승인");
+            }
         }
 
         return result;
