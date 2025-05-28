@@ -29,8 +29,6 @@ public class SignService {
                 } else {
                     throw new IllegalArgumentException("유효하지 않은 base64 문자열입니다. (Level 1)");
                 }
-                // Mapper 호출
-                signMapper.addSignLevel1(signForm);
             } else if (level == 2) {
                 String base64Img = signForm.getFileNameLv2();
                 if (base64Img != null && base64Img.contains(",")) {
@@ -38,7 +36,6 @@ public class SignService {
                 } else {
                     throw new IllegalArgumentException("유효하지 않은 base64 문자열입니다. (Level 2)");
                 }
-                signMapper.addSignLevel2(signForm);
             } else {
                 throw new IllegalArgumentException("지원되지 않는 서명 레벨입니다. (1 또는 2만 허용)");
             }
