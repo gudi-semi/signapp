@@ -18,8 +18,23 @@
     <script>
         // 버튼 한 번 누르면 비활성하게
 	    $('#docForm').on('submit', function(e){
-	        $('#submitBtn').attr('disabled', true);
-	    });
+            const title = $('input[name="documentTitle"]').val().trim();
+            const content = $('textarea[name="documentContent"]').val().trim();
+
+            if(title === '') {
+                alert('제목을 작성해주세요.');
+                e.preventDefault();
+                $('#submitBtn').attr('disabled', false);
+                return false;
+            }
+            if(content === '') {
+                alert('내용을 작성해주세요.');
+                e.preventDefault();
+                $('#submitBtn').attr('disabled', false);
+                return false;
+            }
+            $('#submitBtn').attr('disabled', true);
+        });
     </script>
 </body>
 </html>
