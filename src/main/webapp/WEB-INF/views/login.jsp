@@ -23,6 +23,27 @@
             gap: 10px;
             margin-top: 20px;
         }
+        
+        a[href*="level1List"],
+		a[href*="level2List"] {
+		    display: inline-block;
+		    margin-top: 20px;
+		    padding: 10px 16px;
+		    border: 1px solid #1c5d99;
+		    background-color: transparent;
+		    color: #1c5d99;
+		    border-radius: 6px;
+		    font-weight: 500;
+		    text-align: center;
+		    text-decoration: none;
+		    transition: all 0.3s ease;
+		}
+		
+		a[href*="level1List"]:hover,
+		a[href*="level2List"]:hover {
+		    background-color: #1c5d99;
+		    color: white;
+		}
     </style>
 </head>
 <body>
@@ -34,23 +55,23 @@
         <c:if test="${not empty loginEmployee}">
             <h4 class="mb-4 text-center">${loginEmployee.employeeLevel}  ${loginEmployee.employeeName}님, 환영합니다! </h4>
             <div class="btn-group-custom">
-<a 
-    href="/docWrite" 
-    class="btn btn-primary w-100"
-    <c:if test="${loginEmployee.employeeLevel == 'level1' || loginEmployee.employeeLevel == 'level2'}">
-        onclick="alert('해당 권한으로는 기안 작성이 불가능합니다.'); return false;"
-    </c:if>
->기안 작성</a>
+				<a href="/docWrite" class="btn btn-primary w-100"
+				    <c:if test="${loginEmployee.employeeLevel == 'level1' || loginEmployee.employeeLevel == 'level2'}">
+				        onclick="alert('해당 권한으로는 기안 작성이 불가능합니다.'); return false;"
+				    </c:if>
+				>기안 작성</a>
                 <a href="/docList" class="btn btn-secondary w-100">기안 리스트</a>
                 <a href="logout" class="btn btn-danger w-100">로그아웃</a>
             </div>
         </c:if>
+        
 		 <c:if test="${loginEmployee.employeeLevel == 'level1'}">
          	<a href="/level1/level1List">lv1미결재 문서목록</a>
          </c:if>
          <c:if test="${loginEmployee.employeeLevel == 'level2'}">
          	<a href="/level2/level2List">lv2미결재 문서목록</a>
          </c:if>
+         
         <!-- 비로그인 상태일 때 -->
         <c:if test="${empty loginEmployee}">
             <h4 class="mb-4 text-center">로그인</h4>

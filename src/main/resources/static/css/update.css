@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+body {
+  background-color: #f5f5f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 40px 20px;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.doc-table th {
+  background-color: #eeeeee;
+  text-align: left;
+  padding: 12px;
+  width: 20%;
+  border: 1px solid #ccc;
+  vertical-align: top;
+}
+
+.doc-table td {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 8px 10px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  max-width: 100%;        /* 셀 안을 넘지 않도록 제한 */
+  box-sizing: border-box;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  resize: vertical;
+}
+
+button#updateBtn {
+  background-color: #2c7be5;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button#updateBtn:hover {
+  background-color: #1a65d1;
+}
+
+.top-link {
+  max-width: 800px;
+  margin: 0 auto 10px auto;
+  text-align: right;
+}
+
+.top-link a {
+  font-size: 16px;
+  color: #2c7be5;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.top-link a:hover {
+  text-decoration: underline;
+  color: #1a65d1;
+}

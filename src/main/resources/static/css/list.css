@@ -1,0 +1,109 @@
+@charset "UTF-8";
+
+body {
+  background-color: #f4f4f4;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 40px 20px;
+  margin: 0;
+  color: #333;
+}
+
+/* 제목 */
+h2 {
+  text-align: center;
+  color: #333;
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+/* 테이블 기본 스타일 */
+table.document-table {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto 30px auto;
+  border-collapse: collapse;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* 헤더 */
+table.document-table th {
+  background-color: #eeeeee;
+  color: #333;
+  padding: 14px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* 내용 */
+table.document-table td {
+  padding: 12px;
+  text-align: center;
+  font-size: 13px;
+  border-bottom: 1px solid #eee;
+}
+
+/* 링크 스타일 */
+table.document-table a {
+  color: #2c7be5;
+  text-decoration: none;
+}
+table.document-table a:hover {
+  text-decoration: underline;
+}
+
+/* 검색 폼 */
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+form select,
+form input[type="text"] {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+form button {
+  background-color: #2c7be5;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #1a65d1;
+}
+
+/* 페이징 */
+div[style*="margin-top: 20px"] {
+  text-align: center;
+  font-size: 16px;
+}
+
+div[style*="margin-top: 20px"] a {
+  color: #2c7be5;
+  margin: 0 4px;
+  text-decoration: none;
+}
+
+div[style*="margin-top: 20px"] a:hover {
+  text-decoration: underline;
+}
+
+div[style*="margin-top: 20px"] span {
+  color: #000;
+}

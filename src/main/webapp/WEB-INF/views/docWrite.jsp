@@ -4,17 +4,24 @@
 <html>
 <head>
     <title>문서 작성</title>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/css/write.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
 </head>
 <body>
-    <h2>문서 작성</h2>
-    <p>작성자: ${sessionScope.loginName}</p>
+    <h1>문서 작성</h1>
 
-    <form:form method="post" id="docForm" action="/writeDocument" modelAttribute="document">
-        제목: <form:input path="documentTitle" /><br/>
-        내용: <form:textarea path="documentContent" /><br/>
-        <input type="submit" id="submitBtn" value="작성하기"/>
-    </form:form>
+	<div class="return-link">
+	  <a href="/login">돌아가기</a>
+	</div>
+
+	<div class="form-container">
+	    <form:form method="post" id="docForm" action="/writeDocument" modelAttribute="document">
+	    	<p>작성자: ${sessionScope.loginName}</p>
+	        제목 <form:input path="documentTitle" /><br/>
+	        내용 <form:textarea path="documentContent" /><br/>
+	        <input type="submit" id="submitBtn" value="작성하기"/>
+	    </form:form>
+    </div>
     <script>
         // 버튼 한 번 누르면 비활성하게
 	    $('#docForm').on('submit', function(e){

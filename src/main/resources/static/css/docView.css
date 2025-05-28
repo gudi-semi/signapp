@@ -1,0 +1,180 @@
+@charset "UTF-8";
+
+body {
+  background-color: #f4f4f4;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 40px 20px;
+  margin: 0;
+  color: #333;
+}
+
+/* 제목 */
+h2 {
+  text-align: center;
+  color: #333;
+  font-size: 28px;
+  margin-bottom: 40px;
+}
+
+/* 문서 전체 박스 */
+.container {
+  width: 900px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* 결재 테이블 (우측 상단) */
+.approval-wrapper {
+  width: 320px;
+  margin-left: auto;
+  margin-bottom: 30px;
+}
+
+.approval-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.approval-wrapper th,
+.approval-wrapper td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 14px;
+  background-color: #f9f9f9;
+}
+
+/* 문서 내용 테이블 */
+.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.doc-table th {
+  background-color: #eeeeee;
+  text-align: left;
+  padding: 12px;
+  border: 1px solid #ccc;
+  width: 20%;
+}
+
+.doc-table td {
+  padding: 12px;
+  background-color: white;
+  border: 1px solid #ddd;
+  vertical-align: top;
+}
+
+/* 링크 버튼 */
+a {
+  color: #2c7be5;
+  font-weight: 500;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #1a65d1;
+}
+
+/* 서명 버튼 */
+.sign-link {
+  background: transparent;
+  border: none;
+  color: #2c7be5;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.sign-link:hover {
+  color: #1a65d1;
+  text-decoration: underline;
+}
+
+/* 상태박스 (보류, 거절) */
+.status-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-box .triangle {
+  position: absolute;
+  top: -20px;
+  font-size: 60px;
+  color: transparent;
+  -webkit-text-stroke: 1.5px orange;
+  z-index: 1;
+}
+
+.status-box .xmark {
+  position: absolute;
+  top: -10px;
+  font-size: 50px;
+  color: transparent;
+  -webkit-text-stroke: 2px red;
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.status-box .text {
+  font-size: 18px;
+  position: absolute;
+  top: 20px;
+  color: orange;
+  z-index: 2;
+}
+
+.status-box.reject .text {
+  color: red;
+}
+
+/* 삭제 버튼 처리 */
+#deleteDocumentLink {
+  cursor: pointer;
+}
+
+/* 결재 테이블 두 번째 행만 스타일 지정 */
+.approval-wrapper table tr:nth-child(1) td {
+  background-color: #eeeeee; /* 문서 제목 배경색과 동일 */
+  font-weight: bold;
+  color: #333;
+}
+
+.doc-action-links {
+  display: flex;
+  justify-content: flex-start;  /* 왼쪽 정렬로 변경 */
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.doc-action-links a {
+  font-size: 13px;
+  color: #2c7be5;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  font-weight: 500;
+}
+
+.doc-action-links a:hover {
+  background-color: #e6f0ff;
+  text-decoration: underline;
+}
+
+

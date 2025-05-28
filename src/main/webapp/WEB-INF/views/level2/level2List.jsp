@@ -4,10 +4,11 @@
 <html>
 <head>
 <title>lv2 미결재 문서 목록</title>
+<link rel="stylesheet" href="/css/list.css">
 </head>
 <body>
 	<h2>lv2 미결재 문서 목록</h2>
-	<table border="1">
+	<table class="document-table">
 		<tr>
 			<th>문서 번호</th>
 			<th>제목</th>
@@ -54,6 +55,5 @@
 		</select> <input type="text" name="searchWord" id="searchWord" value="${page.searchWord}">
 		<button type="submit">검색</button>
 	</form>
-	<a href="/docList">전체 목록</a>
 </body>
 </html>

@@ -4,39 +4,42 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>문서 수정</title>
+<link rel="stylesheet" href="/css/update.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<style>
-.doc-table {
-	width: 80%;
-}
-</style>
 </head>
-<body>
-	<h2>문서 수정 페이지</h2>
-	<form id="updateDocumentForm" action="/updateDocView" method="post">
-		<input type="hidden" name="documentNo" value="${document.documentNo}">
-		<table class="doc-table" border="1" cellpadding="10" cellspacing="0">
-			<tr>
-				<th width="100" height="40" align="left">문서 번호:</th>
-				<td>${document.documentNo}</td>
-			</tr>
-			<tr>
-				<th height="40" align="left">제목:</th>
-				<td>
-					<input type="text" id="documentTitle" name="documentTitle" value="${document.documentTitle}" style="width: 400px;">
-				</td>
-			</tr>
-			<tr>
-				<th height="100" align="left">내용:</th>
-				<td valign="top">
-					<textarea id="documentContent" name="documentContent" rows="5" cols="60">${document.documentContent}</textarea>
-				</td>
-			</tr>
-		</table>
-		<br>
-		<button type="button" id="updateBtn">수정하기</button>
-	</form>
+<body>	
+	<h1>문서 수정 페이지</h1>
+	
+	<div class="top-link">
+	  <a href="docView?documentNo=${document.documentNo}">문서 상세 페이지</a>
+	</div>
+	
+	<div class="container">
+		<form id="updateDocumentForm" action="/updateDocView" method="post">
+			<input type="hidden" name="documentNo" value="${document.documentNo}">
+			<table class="doc-table">
+				<tr>
+					<th>문서 번호</th>
+					<td>${document.documentNo}</td>
+				</tr>
+				<tr>
+					<th>제목</th>
+					<td>
+						<input type="text" id="documentTitle" name="documentTitle" value="${document.documentTitle}">
+					</td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td>
+						<textarea id="documentContent" name="documentContent" rows="5">${document.documentContent}</textarea>
+					</td>
+				</tr>
+			</table>
+			<br>
+			<button type="button" id="updateBtn">수정하기</button>
+		</form>
+	</div>
 	
 	
 	<script>

@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+body {
+  background-color: #f4f4f4;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 40px 20px;
+  margin: 0;
+  color: #333;
+  line-height: 1.6;
+}
+
+h1, h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+}
+
+canvas {
+  display: block;
+  margin: 20px auto;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 40px; /* 기존 30px → 더 넓게 */
+  flex-wrap: wrap;
+}
+
+.button-group button {
+  min-width: 150px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* 기본 버튼 (파란색) */
+#btnSign {
+  background-color: #007bff;
+}
+
+#btnSign:hover {
+  background-color: #0056b3;
+}
+
+/* 지우기 버튼 (빨간색) */
+#btnClear {
+  background-color: #dc3545;
+}
+
+#btnClear:hover {
+  background-color: #b02a37;
+}
+
+/* 돌아가기 버튼 (회색) */
+#btnBack {
+  background-color: #6c757d;
+}
+
+#btnBack:hover {
+  background-color: #565e64;
+}
+
+/* 드롭다운 */
+select {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l6 6 6-6z' fill='%23666'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px 6px;
+  min-width: 120px;
+}
+
+.info-box {
+  max-width: 520px;
+  margin: 0 auto 5px auto;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e0e0e0;
+  font-size: 15px;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 6px 0;
+  border-bottom: 1px dashed #ddd;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.label {
+  flex: 0 0 110px;
+  font-weight: 600;
+  color: #444;
+}
+
+.value {
+  flex: 1;
+  color: #222;
+}
+
+.approval-actions {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.approval-actions label {
+  font-size: 15px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 16px;
+}

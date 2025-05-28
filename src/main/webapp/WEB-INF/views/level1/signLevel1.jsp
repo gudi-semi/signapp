@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>서명 레벨1</title>
+<link rel="stylesheet" href="/css/sign.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
 <script>
@@ -67,26 +68,41 @@
 </script>
 </head>
 <body>
-<h1>레벨 1 서명</h1>
-<p>document2 : ${documentNo}</p>
-<p>서명자: ${sessionScope.loginName}</p>
-<p>id : ${sessionScope.loginId}</p>
-<p>레벨 : ${sessionScope.employeeLevel }
+<h1>레벨 1 서명란</h1>
+<div class="info-box">
+  <div class="info-row">
+	<span class="label">문서 번호</span><span class="value">${documentNo}</span>
+  </div>
+  <div class="info-row">
+    <span class="label">서명자</span><span class="value">${sessionScope.loginName}</span>
+  </div>
+  <div class="info-row">
+    <span class="label">ID</span><span class="value">${sessionScope.loginId}</span>
+  </div>
+  <div class="info-row">
+    <span class="label">레벨</span><span class="value">${sessionScope.employeeLevel}</span>
+  </div>
+</div>
+
 <input type="hidden" id="documentNo" value="${documentNo}">
 <input type="hidden" id="loginId" value="${sessionScope.loginId}">
 <input type="hidden" id="approverName" value="${sessionScope.loginName}">
 <canvas style="border: 1px solid #FF0000;"></canvas><br>
-<label>결재 상태:
-    <select id="signStatusLv1">
-        <option value="대기">대기</option>
-        <option value="거절">거절</option>
-        <option value="승인">승인</option>
-        <option value="보류">보류</option>
-    </select>
-</label>
-<br><br>
-<button type="button" onclick="location.href='/docView?documentNo=' + document.getElementById('documentNo').value">돌아가기</button>
-<button type="button" id="btnClear">지우기</button>
-<button type="button" id="btnSign">확인</button>
+<div class="approval-actions">
+	<label>결재 상태:
+	    <select id="signStatusLv1">
+	        <option value="대기">대기</option>
+	        <option value="거절">거절</option>
+	        <option value="승인">승인</option>
+	        <option value="보류">보류</option>
+	    </select>
+	</label>
+	<br><br>
+	<div class="button-group">
+		<button type="button" id="btnBack" onclick="location.href='/docView?documentNo=' + document.getElementById('documentNo').value">돌아가기</button>
+		<button type="button" id="btnClear">지우기</button>
+		<button type="button" id="btnSign">확인</button>
+	</div>
+</div>
 </body>
 </html>

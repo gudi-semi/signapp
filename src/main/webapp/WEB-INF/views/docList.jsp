@@ -4,10 +4,11 @@
 <html>
 <head>
 <title>문서 목록</title>
+<link rel="stylesheet" href="/css/list.css">
 </head>
 <body>
 	<h2>문서 목록</h2>
-	<table border="1">
+	<table class="document-table">
 		<tr>
 			<th>문서 번호</th>
 			<th>제목</th>
@@ -20,11 +21,13 @@
 				<td><a href="docView?documentNo=${doc.documentNo}">
 						${doc.documentTitle} </a></td>
 				<td>${doc.employeeName}</td>
-				<td><c:if test="${doc.documentStatus == '대기'}">⏳ 대기</c:if> <c:if
-						test="${doc.documentStatus == '승인'}">✅ 승인</c:if> <c:if
-						test="${doc.documentStatus == '거절'}">❌ 거절</c:if> <c:if
-						test="${doc.documentStatus == '진행중'}">🕒 진행중</c:if> <c:if
-						test="${doc.documentStatus == '보류'}">⏸️ 보류</c:if></td>
+				<td>
+					<c:if test="${doc.documentStatus == '대기'}">⏳ 대기</c:if> 
+					<c:if test="${doc.documentStatus == '승인'}">✅ 승인</c:if> 
+					<c:if test="${doc.documentStatus == '거절'}">❌ 거절</c:if> 
+					<c:if test="${doc.documentStatus == '진행중'}">🕒 진행중</c:if> 
+					<c:if test="${doc.documentStatus == '보류'}">⏸️ 보류</c:if>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>
