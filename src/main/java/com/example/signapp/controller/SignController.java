@@ -106,15 +106,51 @@ public class SignController {
     }
     // filter - level1
     @GetMapping("/level1/level1List")
-    public String level1List() {
+    public String level1List(Model model
+							,@RequestParam(defaultValue = "1") int currentPage
+							,@RequestParam(defaultValue = "10") int rowPerPage
+							,@RequestParam(defaultValue = "all") String searchOption
+							,@RequestParam(defaultValue = "") String searchWord) {
     	
-    	return "level1List";
+    	int totalCount = documentService.getTotalCountLevel1(searchOption, searchWord);
+    	Page page = new Page(rowPerPage, currentPage, totalCount, searchOption, searchWord);
+    	
+    	List<Document> documentList = documentService.getDocumentListLevel1(page);
+    	
+    	model.addAttribute("documentList", documentList);
+        // model에 page 넣기
+        model.addAttribute("page", page);
+        //두개의 상태값 비교해서 doc의 상태 업데이트
+        for (Document doc : documentList) {
+        	if (doc == null) continue;
+            signService.getSignStatusByDocumentNo(doc.getDocumentNo());
+        }
+        
+    	return "level1/level1List";
     }
     
     // filter - level2
     @GetMapping("/level2/level2List")
-    public String level2List(HttpSession session) {
+    public String level2List(Model model
+							,@RequestParam(defaultValue = "1") int currentPage
+							,@RequestParam(defaultValue = "10") int rowPerPage
+							,@RequestParam(defaultValue = "all") String searchOption
+							,@RequestParam(defaultValue = "") String searchWord) {
     	
+    	int totalCount = documentService.getTotalCountLevel2(searchOption, searchWord);
+    	Page page = new Page(rowPerPage, currentPage, totalCount, searchOption, searchWord);
+    	
+    	List<Document> documentList = documentService.getDocumentListLevel2(page);
+    	
+    	model.addAttribute("documentList", documentList);
+        // model에 page 넣기
+        model.addAttribute("page", page);
+        //두개의 상태값 비교해서 doc의 상태 업데이트
+        for (Document doc : documentList) {
+        	if (doc == null) continue;
+            signService.getSignStatusByDocumentNo(doc.getDocumentNo());
+        }
+        
     	return "level2/level2List";
     }
     

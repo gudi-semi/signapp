@@ -25,4 +25,13 @@ public interface DocumentService {
 
     // 페이징 하려고 구함
 	int getTotalCount(String searchOption, String searchWord);
+	
+	// filter
+	List<Document> getDocumentListLevel1(Page page);
+	
+	int getTotalCountLevel1(String searchOption, String searchWord);
+	
+	List<Document> getDocumentListLevel2(Page page);
+	
+	int getTotalCountLevel2(String searchOption, String searchWord);
 }

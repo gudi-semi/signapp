@@ -59,4 +59,31 @@ public class IDocumentService implements DocumentService {
 	    param.put("searchWord", searchWord);
 	    return documentMapper.getTotalCount(param);
 	}
+	
+	// filter
+	@Override
+	public List<Document> getDocumentListLevel1(Page page) {
+		return documentMapper.selectDocumentListLevel1(page);
+	}
+	
+	@Override
+	public int getTotalCountLevel1(String searchOption, String searchWord) {
+		Map<String, Object> param = new HashMap<>();
+	    param.put("searchOption", searchOption);
+	    param.put("searchWord", searchWord);
+	    return documentMapper.getTotalCountLevel1(param);
+	}
+	
+	@Override
+	public List<Document> getDocumentListLevel2(Page page) {
+		return documentMapper.selectDocumentListLevel2(page);
+	}
+	
+	@Override
+	public int getTotalCountLevel2(String searchOption, String searchWord) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("searchOption", searchOption);
+		param.put("searchWord", searchWord);
+		return documentMapper.getTotalCountLevel2(param);
+	}
 }

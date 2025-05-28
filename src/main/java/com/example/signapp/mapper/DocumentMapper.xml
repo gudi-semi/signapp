@@ -121,4 +121,145 @@
 			</if>
 		</where>
 	</select>
+	
+	<!-- filter - 미결재 서류 목록 쿼리 -->
+	<select id="getTotalCountLevel1" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM document d
+		LEFT JOIN employee e ON d.employee_id =
+		e.employee_id
+		LEFT JOIN sign s ON d.document_no = s.document_no
+		<where>
+			1 = 1
+			AND s.sign_status_lv2 = '승인'
+			AND s.sign_status_lv1 = '대기'
+			<if
+				test="searchOption != null and searchOption != '' and searchWord != null and searchWord != ''">
+				AND (
+				<choose>
+					<when test="searchOption == 'all'">
+						(
+						d.document_title LIKE CONCAT('%', #{searchWord}, '%')
+						OR e.employee_name LIKE CONCAT('%', #{searchWord}, '%')
+						)
+					</when>
+					<when test="searchOption == 'title'">
+						d.document_title LIKE CONCAT('%', #{searchWord}, '%')
+					</when>
+					<when test="searchOption == 'user'">
+						e.employee_name LIKE CONCAT('%', #{searchWord}, '%')
+					</when>
+				</choose>
+				)
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectDocumentListLevel1"
+		parameterType="com.example.signapp.dto.Page"
+		resultType="com.example.signapp.dto.Document">
+		SELECT d.document_no documentNo,
+		d.document_title documentTitle,
+		d.document_content documentContent,
+		d.employee_id employeeId,
+		e.employee_name employeeName
+		FROM
+		document d
+		LEFT JOIN employee e ON d.employee_id = e.employee_id
+		LEFT JOIN sign s ON d.document_no = s.document_no
+		<where>
+			1 = 1
+			AND s.sign_status_lv2 = '승인'
+			AND s.sign_status_lv1 = '대기'
+			<if
+				test="searchOption != null and searchOption != '' and searchWord != null and searchWord != ''">
+				AND (
+				<choose>
+					<when test="searchOption == 'all'">
+						(
+						d.document_title LIKE CONCAT('%', #{searchWord}, '%')
+						OR e.employee_name LIKE CONCAT('%', #{searchWord}, '%')
+						)
+					</when>
+					<when test="searchOption == 'title'">
+						d.document_title LIKE CONCAT('%', #{searchWord}, '%')
+					</when>
+					<when test="searchOption == 'user'">
+						e.employee_name LIKE CONCAT('%', #{searchWord}, '%')
+					</when>
+				</choose>
+				)
+			</if>
+		</where>
+		ORDER BY d.document_no DESC
+		LIMIT #{beginRow}, #{rowPerPage}
+	</select>
+	
+	<select id="getTotalCountLevel2" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM document d
+		LEFT JOIN employee e ON d.employee_id =
+		e.employee_id
+		<where>
+			1 = 1
+			AND document_status = '대기'
+			<if
+				test="searchOption != null and searchOption != '' and searchWord != null and searchWord != ''">
+				AND (
+				<choose>
+					<when test="searchOption == 'all'">
+						(
+						d.document_title LIKE CONCAT('%', #{searchWord}, '%')
+						OR e.employee_name LIKE CONCAT('%', #{searchWord}, '%')
+						)
+					</when>
+					<when test="searchOption == 'title'">
+						d.document_title LIKE CONCAT('%', #{searchWord}, '%')
+					</when>
+					<when test="searchOption == 'user'">
+						e.employee_name LIKE CONCAT('%', #{searchWord}, '%')
+					</when>
+				</choose>
+				)
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectDocumentListLevel2"
+		parameterType="com.example.signapp.dto.Page"
+		resultType="com.example.signapp.dto.Document">
+		SELECT d.document_no documentNo,
+		d.document_title documentTitle,
+		d.document_content documentContent,
+		d.employee_id employeeId,
+		e.employee_name employeeName
+		FROM
+		document d
+		LEFT JOIN employee e ON d.employee_id = e.employee_id
+		<where>
+			1 = 1
+			AND d.document_status = '대기'
+			<if
+				test="searchOption != null and searchOption != '' and searchWord != null and searchWord != ''">
+				AND (
+				<choose>
+					<when test="searchOption == 'all'">
+						(
+						d.document_title LIKE CONCAT('%', #{searchWord}, '%')
+						OR e.employee_name LIKE CONCAT('%', #{searchWord}, '%')
+						)
+					</when>
+					<when test="searchOption == 'title'">
+						d.document_title LIKE CONCAT('%', #{searchWord}, '%')
+					</when>
+					<when test="searchOption == 'user'">
+						e.employee_name LIKE CONCAT('%', #{searchWord}, '%')
+					</when>
+				</choose>
+				)
+			</if>
+		</where>
+		ORDER BY d.document_no DESC
+		LIMIT #{beginRow}, #{rowPerPage}
+	</select>
 </mapper> 

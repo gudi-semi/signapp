@@ -25,4 +25,14 @@ public interface DocumentMapper {
 	int updateDocumentStatus(Document document);
 	
 	int getTotalCount(Map<String, Object> param);
+	
+	// filter - level1 미결재서류목록
+	List<Document> selectDocumentListLevel1(Page page);
+	
+	int getTotalCountLevel1(Map<String, Object> param);
+	
+	// filter - level2 미결재서류목록
+	List<Document> selectDocumentListLevel2(Page page);
+		
+	int getTotalCountLevel2(Map<String, Object> param);
 }
