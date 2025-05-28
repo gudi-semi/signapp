@@ -21,7 +21,6 @@ public class SignRest {
 
     @PostMapping("/signLevel1")
     public String addSignLevel1(@RequestBody SignForm signForm) {
-    	 log.info("📄 사인 저장할 문서 번호: {}", signForm.getDocumentNo());  // ✅ 로그 꼭 찍어봐!
         signService.saveSignBase64(signForm, 1);
         signService.addSignLevel1(signForm);
         return "결재 성공";
@@ -31,7 +30,6 @@ public class SignRest {
     public String addSignLevel2(@RequestBody SignForm signForm) {
         signService.saveSignBase64(signForm, 2);
         signService.addSignLevel2(signForm);
-        log.info("DB저장 전 documentNo: {}", signForm.getDocumentNo());
         return "결재 성공";
     }
 
