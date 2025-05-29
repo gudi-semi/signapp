@@ -95,7 +95,7 @@
 	<label>결재 상태:
 	    <select id="signStatusLv2">
 	        <option value="대기">대기</option>
-	        <option value="거절">거절</option>
+	        <option value="반려">반려</option>
 	        <option value="승인">승인</option>
 	        <option value="보류">보류</option>
 	    </select>

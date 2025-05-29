@@ -54,10 +54,10 @@
 								<div class="text">보류</div>
 							</div>
 						</c:when>
-						<c:when test="${sign.signStatusLv2 == '거절'}">
+						<c:when test="${sign.signStatusLv2 == '반려'}">
 							<div class="status-box reject">
 								<div class="xmark">&#10005;</div>
-								<div class="text">거절</div>
+								<div class="text">반려</div>
 							</div>
 						</c:when>
 						<c:when test="${not empty sign.fileNameLv2}">
@@ -79,10 +79,10 @@
 								<div class="text">보류</div>
 							</div>
 						</c:when>
-						<c:when test="${sign.signStatusLv1 == '거절'}">
+						<c:when test="${sign.signStatusLv1 == '반려'}">
 							<div class="status-box reject">
 								<div class="xmark">&#10005;</div>
-								<div class="text">거절</div>
+								<div class="text">반려</div>
 							</div>
 						</c:when>
 						<c:when test="${not empty sign.fileNameLv1}">
@@ -133,7 +133,7 @@
 	});
 
 	$('#sign-linkLevel1').click(function () {
-		if (statusLv2 === '보류' || statusLv2 === '거절' || statusLv2 === '대기' || statusLv2 === '') {
+		if (statusLv2 === '보류' || statusLv2 === '반려' || statusLv2 === '대기' || statusLv2 === '') {
 			alert('현재는 결재가 불가능합니다.');
 			return false;
 		}
